@@ -1,0 +1,29 @@
+
+{
+  "registration": {
+    "firstname": "Arturo",
+    "lastname": "Perez",
+    "email": "Perez123@mail.com",
+    "password": "cguvhibjonko"
+  },
+  "contact_form": {
+    "attachment_path": "C:\\Users\\Augusto  Sanchez\\Desktop\\Testing Projects\\prueba-selenium-python\\source\\bulon_allen.PNG",
+    "message": "Regular message"
+  },
+  "checkout": {
+    "address": "P. Sherman 42 Wallaby Street",
+    "postcode": "01234",
+    "city": "Sidney",
+    "state_value": "2"
+  },
+  "language":{
+    "espaniol": "//*[@id='_desktop_language_selector']/div/div/ul/li[7]/a",
+    "italiano": "//*[@id='_desktop_language_selector']/div/div/ul/li[5]/a"
+  },
+  "device":{
+    "desktop": "//*[@id='devices']/li[1]/a/i",
+    "tabletH": "//*[@id='devices']/li[2]/a/i",
+    "tabletV": "//*[@id='devices']/li[3]/a/i",
+    "phone": "//*[@id='devices']/li[4]/a/i"
+  }
+}
