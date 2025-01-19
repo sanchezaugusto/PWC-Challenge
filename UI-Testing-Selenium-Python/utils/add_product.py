@@ -21,11 +21,27 @@ def funcionTest(driver, productXPATH, quickViewXPATH):
     
     WebDriverWait(driver, 30).until(
     EC.presence_of_element_located((By.XPATH, "//*[@id='add-to-cart-or-refresh']/div[2]/div/div[2]/button")))
-    #time.sleep(2)
+
     addtocart2Button = driver.find_element(By.XPATH, "//*[@id='add-to-cart-or-refresh']/div[2]/div/div[2]/button")
     addtocart2Button.click()
-    # WebDriverWait(driver, 30).until(
-    # EC.presence_of_element_located((By.XPATH, "//*[@id='conditions_to_approve[terms-and-conditions]']")))
+
     time.sleep(2) 
     closeView = driver.find_element(By.XPATH, "//*[@id='blockcart-modal']/div/div/div[2]/div/div[2]/div/div/button")
     closeView.click()
+
+def wait_for_element(driver, by, value, wait_time):
+    return WebDriverWait(driver, wait_time).until(
+        EC.presence_of_element_located((by, value))
+    )
+
+def wait_for_element_to_be_visible_and_clickable(driver, by, value, wait_time):
+    WebDriverWait(driver, wait_time).until(
+        EC.visibility_of_element_located((by, value))
+    )
+    return WebDriverWait(driver, wait_time).until(
+        EC.element_to_be_clickable((by, value))
+)
+
+def click_element(driver, by, value):
+    element = wait_for_element(driver, by, value, 20)
+    element.click()

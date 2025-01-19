@@ -8,7 +8,8 @@
   },
   "contact_form": {
     "attachment_path": "C:\\Users\\Augusto  Sanchez\\Desktop\\Testing Projects\\prueba-selenium-python\\source\\bulon_allen.PNG",
-    "message": "Regular message"
+    "message": "Average message",
+    "email": "Perez123@mail.com"
   },
   "checkout": {
     "address": "P. Sherman 42 Wallaby Street",
@@ -17,8 +18,8 @@
     "state_value": "2"
   },
   "language":{
-    "espaniol": "//*[@id='_desktop_language_selector']/div/div/ul/li[7]/a",
-    "italiano": "//*[@id='_desktop_language_selector']/div/div/ul/li[5]/a"
+    "spanish": "//*[@id='_desktop_language_selector']/div/div/ul/li[7]/a",
+    "italian": "//*[@id='_desktop_language_selector']/div/div/ul/li[5]/a"
   },
   "device":{
     "desktop": "//*[@id='devices']/li[1]/a/i",

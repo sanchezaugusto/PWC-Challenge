@@ -1,10 +1,8 @@
-# test_user_registration.py
-import time
 from selenium.webdriver.common.by import By
-from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from utils.test_data_loader import load_test_data
 from utils.custom_assertion import assert_resolution
+from utils.add_product import wait_for_element
 from dotenv import load_dotenv
 from page.home import configHome
 
@@ -12,36 +10,37 @@ load_dotenv()
 
 REGISTRATION_DATA = load_test_data("test_data.json")["registration"]
 DEVICE = load_test_data("test_data.json")["device"]
+APP_URL = "APP_URL"
 
-def test_user_registration(driver):
-    configHome(driver,url="APP_URL", device = DEVICE["desktop"])
+WAIT_TIME = 20
+LOGIN_SELECTOR = "_desktop_user_info"
+CONTENT_SELECTOR = "#content > div > a"
+SEND_BUTTON_SELECTOR = "//*[@id='customer-form']/footer/button"
+REG_DATA_SELECTOR = "//*[@id='_desktop_user_info']/div/a[2]/span"
+
+
+def test_main1(driver):
+
+    configHome(driver, url=APP_URL, device=DEVICE["desktop"])
     
-    WebDriverWait(driver, 50).until(
-    EC.presence_of_element_located((By.ID, "_desktop_user_info")))
-
-    driver.find_element(By.ID, "_desktop_user_info").click()
+    wait_for_element(driver, By.ID, LOGIN_SELECTOR, WAIT_TIME)
+    driver.find_element(By.ID, LOGIN_SELECTOR).click()
     
-    WebDriverWait(driver, 50).until(
-    EC.presence_of_element_located((By.CSS_SELECTOR, "#content > div > a")))
-    driver.find_element(By.CSS_SELECTOR, "#content > div > a").click()
+    wait_for_element(driver, By.CSS_SELECTOR, CONTENT_SELECTOR, WAIT_TIME)
+    driver.find_element(By.CSS_SELECTOR, CONTENT_SELECTOR).click()
 
-    WebDriverWait(driver, 50).until(
-    EC.presence_of_element_located((By.XPATH, "//*[@id='customer-form']/footer/button")))
+    wait_for_element(driver, By.XPATH, SEND_BUTTON_SELECTOR, WAIT_TIME)
 
     # Act: Completar el formulario de registro
     driver.find_element(By.NAME, "firstname").send_keys(REGISTRATION_DATA["firstname"])
     driver.find_element(By.NAME, "lastname").send_keys(REGISTRATION_DATA["lastname"])
     driver.find_element(By.NAME, "email").send_keys(REGISTRATION_DATA["email"])
     driver.find_element(By.NAME, "password").send_keys(REGISTRATION_DATA["password"])
-    driver.find_element(By.NAME, "psgdpr").click()      #acepta condicion
-    driver.find_element(By.NAME, "customer_privacy").click()    #acepta condicion
-    driver.find_element(By.XPATH, "//*[@id='customer-form']/footer/button").click()  #envia formulario
+    driver.find_element(By.NAME, "psgdpr").click()
+    driver.find_element(By.NAME, "customer_privacy").click()
+    driver.find_element(By.XPATH, SEND_BUTTON_SELECTOR).click()
     
-
-    WebDriverWait(driver, 50).until(
-    EC.presence_of_element_located((By.XPATH, "//*[@id='_desktop_user_info']/div/a[1]")))
-    WebDriverWait(driver, 50).until(
-    EC.presence_of_element_located((By.XPATH, "//*[@id='_desktop_user_info']/div/a[2]/span")))
+    wait_for_element(driver, By.XPATH, REG_DATA_SELECTOR, WAIT_TIME)
 
    # Asserts
     expectedText = "Sign In"
@@ -50,7 +49,7 @@ def test_user_registration(driver):
     f"Expected success message not displayed. Actual message: {logOut.text}"
 
     expectedName = f"{REGISTRATION_DATA['firstname']} {REGISTRATION_DATA['lastname']}"
-    userData = driver.find_element(By.XPATH, "//*[@id='_desktop_user_info']/div/a[2]/span")
+    userData = driver.find_element(By.XPATH, REG_DATA_SELECTOR)
     assert userData.text == expectedName, \
     f"Expected success message not displayed. Actual message: {userData.text}"
 
