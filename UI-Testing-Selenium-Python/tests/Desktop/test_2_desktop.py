@@ -1,13 +1,11 @@
-import pytest
 from selenium import webdriver
 from selenium.webdriver.common.by import By
-from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-from dotenv import load_dotenv
 from utils.test_data_loader import load_test_data
-from page.home import configHome
 from utils.custom_assertion import assert_resolution
-from utils.add_product import wait_for_element
+from utils.product_interactions import wait_for_element
+from page.home import configHome
+from dotenv import load_dotenv
 
 load_dotenv()
 
@@ -19,11 +17,10 @@ CONTACT_US_ID = "contact-link"
 FILE_UPLOAD_ID = "file-upload"
 EMAIL_ID = "email"
 MESSAGE_BOX_ID = "contactform-message"
-SEND_BUTTON_XPATH = "//*[@id='content']/section/form/footer/input[3]"
+SEND_BUTTON_NAME = "submitMessage"
 SUCCESS_MESSAGE_XPATH = "//*[@id='content']/section/form/div/ul/li"
 
 def test_main2(driver):
-    # Arrange: Navegar a la página de registro
     configHome(driver,url=APP_URL, device = DEVICE["desktop"])
 
     wait_for_element(driver, By.ID, CONTACT_US_ID, WAIT_TIME)
@@ -35,7 +32,7 @@ def test_main2(driver):
     email_box = driver.find_element(By.ID, EMAIL_ID)
     attachment_box = driver.find_element(By.ID, FILE_UPLOAD_ID)
     message_box = driver.find_element(By.ID, MESSAGE_BOX_ID)
-    send_button =driver.find_element(By.XPATH, SEND_BUTTON_XPATH)
+    send_button = driver.find_element(By.NAME, SEND_BUTTON_NAME)
 
     attachment_box.send_keys(CONTACTFORM_DATA["attachment_path"])
     message_box.send_keys(CONTACTFORM_DATA["message"])

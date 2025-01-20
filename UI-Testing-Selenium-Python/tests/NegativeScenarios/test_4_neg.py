@@ -5,7 +5,7 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from dotenv import load_dotenv
 from page.home import configHome
-from utils.add_product import funcionTest
+from utils.product_interactions import funcionTest
 from utils.test_data_loader import load_test_data
 import time
 from utils.custom_assertion import assert_resolution

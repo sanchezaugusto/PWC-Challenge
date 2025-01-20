@@ -5,7 +5,7 @@ from selenium.webdriver.support.select import Select
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.action_chains import ActionChains
-from utils.add_product import funcionTest
+from utils.product_interactions import funcionTest
 import time
 
 def test_main5(driver):

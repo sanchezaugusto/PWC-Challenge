@@ -3,7 +3,7 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-from utils.add_product import funcionTest
+from utils.product_interactions import funcionTest
 import time
 import os
 from dotenv import load_dotenv

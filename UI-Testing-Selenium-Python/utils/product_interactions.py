@@ -6,7 +6,7 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 import time
 
-def funcionTest(driver, productXPATH, quickViewXPATH):
+def hover_and_add_to_cart(driver, productXPATH, quickViewXPATH):
     product = driver.find_element(By.XPATH, productXPATH)
     hover= ActionChains(driver).move_to_element(product)
     hover.perform()
