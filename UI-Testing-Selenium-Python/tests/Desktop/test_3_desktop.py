@@ -1,4 +1,3 @@
-from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.select import Select
 from selenium.webdriver.support import expected_conditions as EC
@@ -29,9 +28,12 @@ CONFIRM_ADDRESS_NAME = "confirm-addresses"
 CONDITIONS_TO_APPROVE_ID = "conditions_to_approve[terms-and-conditions]"
 
 def test_main3(driver):
-    configHome(driver,url="APP_URL", device = DEVICE["desktop"])
+    configHome(driver,url=APP_URL, device = DEVICE["desktop"])
 
+    # Arrange
     wait_for_element(driver, By.XPATH, PRODUCT_XPATH, WAIT_TIME)
+
+    # Act
     product1 = driver.find_element(By.XPATH, PRODUCT_XPATH)
     product1.click()
 
@@ -73,6 +75,7 @@ def test_main3(driver):
     payment1Button = driver.find_element(By.ID, CONDITIONS_TO_APPROVE_ID)
     payment1Button.click()
 
+    # Assert
     assert payment1Button.is_selected(), "El botón no se seleccionó después del clic."
     
     expectedResolution = 'desktop'

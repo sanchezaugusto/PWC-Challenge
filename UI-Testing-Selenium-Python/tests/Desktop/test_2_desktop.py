@@ -7,6 +7,9 @@ from utils.product_interactions import wait_for_element
 from page.home import configHome
 from dotenv import load_dotenv
 
+from page.home_page import HomePage
+from page.contact_page import ContactPage
+
 load_dotenv()
 
 CONTACTFORM_DATA = load_test_data("test_data.json")["contact_form"]
@@ -21,25 +24,33 @@ SEND_BUTTON_NAME = "submitMessage"
 SUCCESS_MESSAGE_XPATH = "//*[@id='content']/section/form/div/ul/li"
 
 def test_main2(driver):
-    configHome(driver,url=APP_URL, device = DEVICE["desktop"])
+    #configHome(driver,url=APP_URL, device = DEVICE["desktop"])
+    home_page = HomePage(driver)
+    contact_page = ContactPage(driver)
 
+    home_page.config_home(url=APP_URL, device=DEVICE["desktop"])
+    # Arrange
     wait_for_element(driver, By.ID, CONTACT_US_ID, WAIT_TIME)
+
+    # Act
     login_button = driver.find_element(By.ID, CONTACT_US_ID)
     login_button.click()
 
     wait_for_element(driver, By.ID, FILE_UPLOAD_ID, WAIT_TIME)
+    #contact_page.fill_contact_form(CONTACTFORM_DATA["email"], CONTACTFORM_DATA["attachment_path"], CONTACTFORM_DATA["message"])
+    contact_page.fill_contct_form(CONTACTFORM_DATA["email"], CONTACTFORM_DATA["message"])
+    # email_box = driver.find_element(By.ID, EMAIL_ID)
+    # attachment_box = driver.find_element(By.ID, FILE_UPLOAD_ID)
+    # message_box = driver.find_element(By.ID, MESSAGE_BOX_ID)
+    # send_button = driver.find_element(By.NAME, SEND_BUTTON_NAME)
 
-    email_box = driver.find_element(By.ID, EMAIL_ID)
-    attachment_box = driver.find_element(By.ID, FILE_UPLOAD_ID)
-    message_box = driver.find_element(By.ID, MESSAGE_BOX_ID)
-    send_button = driver.find_element(By.NAME, SEND_BUTTON_NAME)
-
-    attachment_box.send_keys(CONTACTFORM_DATA["attachment_path"])
-    message_box.send_keys(CONTACTFORM_DATA["message"])
-    email_box.clear()
-    email_box.send_keys(CONTACTFORM_DATA["email"])
-    send_button.click()
-
+    # attachment_box.send_keys(CONTACTFORM_DATA["attachment_path"])
+    # message_box.send_keys(CONTACTFORM_DATA["message"])
+    # email_box.clear()
+    # email_box.send_keys(CONTACTFORM_DATA["email"])
+    # send_button.click()
+    
+    # Assert
     wait_for_element(driver, By.XPATH, SUCCESS_MESSAGE_XPATH, WAIT_TIME)
     success_message = driver.find_element(By.XPATH, SUCCESS_MESSAGE_XPATH)
 
