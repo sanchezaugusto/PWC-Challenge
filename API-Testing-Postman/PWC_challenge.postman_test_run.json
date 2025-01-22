@@ -1,0 +1,156 @@
+{
+	"id": "07658183-2920-47b3-b268-aed546fb8d53",
+	"name": "PWC_Challenge",
+	"timestamp": "2025-01-22T03:14:10.048Z",
+	"collection_id": "19633386-647e26f1-b9b5-4728-a313-3e2e3dfcb994",
+	"folder_id": 0,
+	"environment_id": "0",
+	"totalPass": 30,
+	"delay": 0,
+	"persist": true,
+	"status": "finished",
+	"startedAt": "2025-01-22T03:14:05.065Z",
+	"totalFail": 0,
+	"results": [
+		{
+			"id": "c71358b9-29a9-4cf8-b099-b579ca67a6e3",
+			"name": "GET_ELEMENTS",
+			"url": "https://calm-slave.demo.prestashop.com/en/contact-us",
+			"time": 358,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status code is 200": true,
+				"Response body is 'en-US'": true,
+				"Content-Type header is present": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 5,
+					"fail": 0
+				},
+				"Response body is 'en-US'": {
+					"pass": 5,
+					"fail": 0
+				},
+				"Content-Type header is present": {
+					"pass": 5,
+					"fail": 0
+				}
+			},
+			"times": [
+				378,
+				366,
+				366,
+				375,
+				358
+			],
+			"allTests": [
+				{
+					"Status code is 200": true,
+					"Response body is 'en-US'": true,
+					"Content-Type header is present": true
+				},
+				{
+					"Status code is 200": true,
+					"Response body is 'en-US'": true,
+					"Content-Type header is present": true
+				},
+				{
+					"Status code is 200": true,
+					"Response body is 'en-US'": true,
+					"Content-Type header is present": true
+				},
+				{
+					"Status code is 200": true,
+					"Response body is 'en-US'": true,
+					"Content-Type header is present": true
+				},
+				{
+					"Status code is 200": true,
+					"Response body is 'en-US'": true,
+					"Content-Type header is present": true
+				}
+			]
+		},
+		{
+			"id": "35f38048-117f-4641-b519-191274e2aa5c",
+			"name": "CONTACT_US",
+			"url": "https://calm-slave.demo.prestashop.com/en/contact-us",
+			"time": 353,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status code is 200": true,
+				"Response body is 'en-US'": true,
+				"Content-Type header is present": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 5,
+					"fail": 0
+				},
+				"Response body is 'en-US'": {
+					"pass": 5,
+					"fail": 0
+				},
+				"Content-Type header is present": {
+					"pass": 5,
+					"fail": 0
+				}
+			},
+			"times": [
+				372,
+				372,
+				373,
+				388,
+				353
+			],
+			"allTests": [
+				{
+					"Status code is 200": true,
+					"Response body is 'en-US'": true,
+					"Content-Type header is present": true
+				},
+				{
+					"Status code is 200": true,
+					"Response body is 'en-US'": true,
+					"Content-Type header is present": true
+				},
+				{
+					"Status code is 200": true,
+					"Response body is 'en-US'": true,
+					"Content-Type header is present": true
+				},
+				{
+					"Status code is 200": true,
+					"Response body is 'en-US'": true,
+					"Content-Type header is present": true
+				},
+				{
+					"Status code is 200": true,
+					"Response body is 'en-US'": true,
+					"Content-Type header is present": true
+				}
+			]
+		}
+	],
+	"count": 5,
+	"totalTime": 3701,
+	"collection": {
+		"requests": [
+			{
+				"id": "c71358b9-29a9-4cf8-b099-b579ca67a6e3",
+				"method": "GET"
+			},
+			{
+				"id": "35f38048-117f-4641-b519-191274e2aa5c",
+				"method": "POST"
+			}
+		]
+	}
+}

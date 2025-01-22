@@ -1,0 +1,212 @@
+{
+	"info": {
+		"_postman_id": "647e26f1-b9b5-4728-a313-3e2e3dfcb994",
+		"name": "PWC_Challenge",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "19633386"
+	},
+	"item": [
+		{
+			"name": "GET_ELEMENTS",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// Obtén el cuerpo de la respuesta en formato texto (HTML)\r",
+							"const responseBody = pm.response.text();\r",
+							"\r",
+							"// Usa una expresión regular para extraer el valor del token\r",
+							"const tokenMatch = responseBody.match(/<input[^>]*name=\"token\"[^>]*value=\"([^\"]+)\"/);\r",
+							"\r",
+							"// Si encontramos el token, lo guardamos en una variable de entorno\r",
+							"pm.collectionVariables.set(\"token\", tokenMatch[1]);\r",
+							"\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response body is 'en-US'\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"en-US\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Content-Type header is present\", function () {\r",
+							"    pm.response.to.have.header(\"Content-Type\");\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "accept",
+						"value": "*/*"
+					},
+					{
+						"key": "accept-language",
+						"value": "es-ES,es;q=0.9"
+					},
+					{
+						"key": "cookie",
+						"value": "__cf_bm=a.YZpIzbl_c.3chQ4XYgpr14KVqBtmHJAAaqZ63CVwo-1736989574-1.0.1.1-bW7EGjJ0lm_PbkcmOCR8aLwx_RDJvwDtBZMHssEtJ1Rs66M.Vxu5ROUlCpcdUXYug8_ddg8Clg3qlEgvHQtlNQ; _gcl_au=1.1.301675839.1736989576; PHPSESSID=0a3dba1fe01357d7ce24d6645956f540; cf_clearance=_76TB9ldLyEAmVCp6vrx5cPwK4XpV5eUY8nVRc1N4BI-1736989654-1.2.1.1-MEVI1L5BJRiADwv9r7pPccIZEKKUs3KgSDpGdRvqj_.U.o.eQcuzNaMynuz0.j.JfenOTUNJJ5RxBNaU9z.xOuSXS4vsUpULVez.cRYYqdmekUAHQpTIG84mnLkRdX48ViYWn5CVoZKxaGn6J_8iixFdfujWj8WhAp3SwU_vDsb3n5nObLWXbZlVToNdyqSCdt_.CvWTCFhPfKMBGDJYhXx7Sx_CKPgr0KCcVa0G9rwmv1qLluhSNoYcG.zFLqUn5w9UzREMqrO9H3Hw4a4xcpdu7mpdwerbSAEsUaj3tTY; PrestaShop-2ca3cf6e10a8c453220e6cd553462277=def5020084c9c945898a27231fbe62a8db4b9799b0e2a4834de97b5cb09e02fb10c5fbe183d589e86308882cd41e8cad89767b2d0eeb8d1eff1e8982e27bfdbc6059d4dbdcc66f0e6280cf0aed9843b6f57f3f8b4c855b1dbcadac0b0df6633372ce21afe558e50590361a18d7d629d630edc12b0a5a0f7935203f4aa7b83096f2fb9f54e1a5a3ab0772508c9b25f1c228e1d2637e753c2b67a7d3dd50d7666ff92a6112f0a1eaede0b68c051d5beda3dc038ff5f2ed72513c9d5d37cc984b32e3fcf985f294f5ee357fef0909630d5a78afa27c1ef7fee69844ff1962e2fad76ad6fdc4f7e865fd5517d89279563269eecc15e4a90f677f269f3f15103393d0c255615c6f81153836fbb29e2910f2f457eb0b94f325e1c113a29f18b95b5fc56c580edf9a06098f51dc1cbd857f39670629f8c85004d07506f2f312faf24b711f0b1be2da96f54a3ff2b838166cb80a470b275a6da9caa7b46349849b6179fdcb784f9304c4ea3e75acc29e0b68a79a816c0a5600ea97e2838db0f156eeb244a14653acd85dfec3b02bdb29cb871f64e04b62c7eff5f3d288e616bec38226e6e4d319c664a8d22f1013b12750ea2c9b85abc3318367ab28be6c70f8697ce145254686d2ca7860052d92397f2c44faedbf87f7153bc57b86b91f55da109fdf7fa932eb645ef3f5dfef3486a85302edc9ba1db2d46431aa4fedeb5947e087b37e6eb17599abd7c9a0"
+					},
+					{
+						"key": "priority",
+						"value": "u=1, i"
+					},
+					{
+						"key": "referer",
+						"value": "https://snotty-secretary.demo.prestashop.com/en/3-clothes"
+					},
+					{
+						"key": "sec-ch-ua",
+						"value": "\"Google Chrome\";v=\"131\", \"Chromium\";v=\"131\", \"Not_A Brand\";v=\"24\""
+					},
+					{
+						"key": "sec-ch-ua-mobile",
+						"value": "?0"
+					},
+					{
+						"key": "sec-ch-ua-platform",
+						"value": "\"Windows\""
+					},
+					{
+						"key": "sec-fetch-dest",
+						"value": "empty"
+					},
+					{
+						"key": "sec-fetch-mode",
+						"value": "cors"
+					},
+					{
+						"key": "sec-fetch-site",
+						"value": "same-origin"
+					},
+					{
+						"key": "user-agent",
+						"value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36"
+					}
+				],
+				"url": "{{contact_us_url}}",
+				"description": "Generated from cURL: curl 'https://snotty-secretary.demo.prestashop.com/en/module/blockwishlist/action?action=getAllWishlist' \\\r\n  -H 'accept: */*' \\\r\n  -H 'accept-language: es-ES,es;q=0.9' \\\r\n  -H 'cookie: __cf_bm=a.YZpIzbl_c.3chQ4XYgpr14KVqBtmHJAAaqZ63CVwo-1736989574-1.0.1.1-bW7EGjJ0lm_PbkcmOCR8aLwx_RDJvwDtBZMHssEtJ1Rs66M.Vxu5ROUlCpcdUXYug8_ddg8Clg3qlEgvHQtlNQ; _gcl_au=1.1.301675839.1736989576; PHPSESSID=0a3dba1fe01357d7ce24d6645956f540; cf_clearance=_76TB9ldLyEAmVCp6vrx5cPwK4XpV5eUY8nVRc1N4BI-1736989654-1.2.1.1-MEVI1L5BJRiADwv9r7pPccIZEKKUs3KgSDpGdRvqj_.U.o.eQcuzNaMynuz0.j.JfenOTUNJJ5RxBNaU9z.xOuSXS4vsUpULVez.cRYYqdmekUAHQpTIG84mnLkRdX48ViYWn5CVoZKxaGn6J_8iixFdfujWj8WhAp3SwU_vDsb3n5nObLWXbZlVToNdyqSCdt_.CvWTCFhPfKMBGDJYhXx7Sx_CKPgr0KCcVa0G9rwmv1qLluhSNoYcG.zFLqUn5w9UzREMqrO9H3Hw4a4xcpdu7mpdwerbSAEsUaj3tTY; PrestaShop-2ca3cf6e10a8c453220e6cd553462277=def5020084c9c945898a27231fbe62a8db4b9799b0e2a4834de97b5cb09e02fb10c5fbe183d589e86308882cd41e8cad89767b2d0eeb8d1eff1e8982e27bfdbc6059d4dbdcc66f0e6280cf0aed9843b6f57f3f8b4c855b1dbcadac0b0df6633372ce21afe558e50590361a18d7d629d630edc12b0a5a0f7935203f4aa7b83096f2fb9f54e1a5a3ab0772508c9b25f1c228e1d2637e753c2b67a7d3dd50d7666ff92a6112f0a1eaede0b68c051d5beda3dc038ff5f2ed72513c9d5d37cc984b32e3fcf985f294f5ee357fef0909630d5a78afa27c1ef7fee69844ff1962e2fad76ad6fdc4f7e865fd5517d89279563269eecc15e4a90f677f269f3f15103393d0c255615c6f81153836fbb29e2910f2f457eb0b94f325e1c113a29f18b95b5fc56c580edf9a06098f51dc1cbd857f39670629f8c85004d07506f2f312faf24b711f0b1be2da96f54a3ff2b838166cb80a470b275a6da9caa7b46349849b6179fdcb784f9304c4ea3e75acc29e0b68a79a816c0a5600ea97e2838db0f156eeb244a14653acd85dfec3b02bdb29cb871f64e04b62c7eff5f3d288e616bec38226e6e4d319c664a8d22f1013b12750ea2c9b85abc3318367ab28be6c70f8697ce145254686d2ca7860052d92397f2c44faedbf87f7153bc57b86b91f55da109fdf7fa932eb645ef3f5dfef3486a85302edc9ba1db2d46431aa4fedeb5947e087b37e6eb17599abd7c9a0' \\\r\n  -H 'priority: u=1, i' \\\r\n  -H 'referer: https://snotty-secretary.demo.prestashop.com/en/3-clothes' \\\r\n  -H 'sec-ch-ua: \"Google Chrome\";v=\"131\", \"Chromium\";v=\"131\", \"Not_A Brand\";v=\"24\"' \\\r\n  -H 'sec-ch-ua-mobile: ?0' \\\r\n  -H 'sec-ch-ua-platform: \"Windows\"' \\\r\n  -H 'sec-fetch-dest: empty' \\\r\n  -H 'sec-fetch-mode: cors' \\\r\n  -H 'sec-fetch-site: same-origin' \\\r\n  -H 'user-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36'"
+			},
+			"response": []
+		},
+		{
+			"name": "CONTACT_US",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response body is 'en-US'\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include('en-US');\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Content-Type header is present\", function () {\r",
+							"    pm.response.to.have.header(\"Content-Type\");\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "id_contact",
+							"value": "2",
+							"type": "text"
+						},
+						{
+							"key": "from",
+							"value": "{{email}}",
+							"type": "text"
+						},
+						{
+							"key": "fileUpload",
+							"type": "file",
+							"src": "/C:/Users/Augusto  Sanchez/Pictures/example.PNG"
+						},
+						{
+							"key": "message",
+							"value": "Regular message",
+							"type": "text"
+						},
+						{
+							"key": "url",
+							"value": "",
+							"type": "text"
+						},
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "text"
+						},
+						{
+							"key": "submitMessage",
+							"value": "Send",
+							"type": "text"
+						}
+					]
+				},
+				"url": "{{contact_us_url}}"
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "contact_us_url",
+			"value": "https://calm-slave.demo.prestashop.com/en/contact-us",
+			"type": "string"
+		},
+		{
+			"key": "token",
+			"value": "0",
+			"type": "string"
+		},
+		{
+			"key": "email",
+			"value": "6a1b6t9d@anonaddy.me",
+			"type": "string"
+		}
+	]
+}
