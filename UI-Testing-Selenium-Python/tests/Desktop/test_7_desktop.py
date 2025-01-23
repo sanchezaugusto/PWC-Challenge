@@ -1,8 +1,8 @@
 from selenium.webdriver.common.by import By
 from utils.test_data_loader import load_test_data
 from utils.custom_assertion import assert_resolution
-from utils.product_interactions import wait_for_element, click_element
-from page.home import configHome
+from page.base_page import BasePage
+import time
 from dotenv import load_dotenv
 
 from page.home_page import HomePage
@@ -17,30 +17,29 @@ CONTACT_US_ID = "contact-link"
 EMAIL_BOX_NAME = "email"
 SUSCRIBE_BUTTON_XPATH = "//*[@id='blockEmailSubscription_displayFooterBefore']/div/div/form/div/div[1]/input[1]"
 SUSCRIBE_BUTTON_NAME= "submitNewsletter"
-MESSAGE_XPATH = "//*[@id='blockEmailSubscription_displayFooterBefore']/div/div/form/div/div[2]/p[2]"
+MESSAGE_ID = "blockEmailSubscription_displayFooterBefore"
+#MESSAGE_XPATH = "//*[@id='blockEmailSubscription_displayFooterBefore']/div/div/form"
+#MESSAGE_XPATH = "//*[@id='blockEmailSubscription_displayFooterBefore']/div/div/form/div/div[2]/p[2]"
+#//*[@id="blockEmailSubscription_displayFooterBefore"]/div/div/form/div/div[2]/p[2]
+#//*[@id="blockEmailSubscription_displayFooterBefore"]/div/div/form/p
 
 def test_sign_up_newsletter(driver):
 
     home_page = HomePage(driver)
-    #configHome(driver,url=APP_URL, device = DEVICE["desktop"])
-    home_page.config_home(url=APP_URL, device=DEVICE["desktop"])
+    base_page_obj = BasePage(driver)
     
     # Arrange
-    wait_for_element(driver, By.ID, CONTACT_US_ID, WAIT_TIME)
-    home_page.sign_up_newsletter(REGISTRATION_DATA["email"])
-    # contactUs = driver.find_element(By.ID, CONTACT_US_ID)
-    # contactUs.click()
+    base_page_obj.configHome(url=APP_URL, device=DEVICE["desktop"])
 
-    # # Act
-    # wait_for_element(driver, By.NAME, EMAIL_BOX_NAME, WAIT_TIME)
-    # emailbox = driver.find_element(By.NAME, EMAIL_BOX_NAME)
-    # emailbox.send_keys(REGISTRATION_DATA["email"])
-    # click_element(driver, By.NAME, SUSCRIBE_BUTTON_NAME)
+    # Act
+    base_page_obj.wait_for_element(By.ID, CONTACT_US_ID)
+    home_page.sign_up_newsletter(REGISTRATION_DATA["email"])
 
     # Assert  
-    wait_for_element(driver, By.XPATH, MESSAGE_XPATH, WAIT_TIME)
-    success_message = driver.find_element(By.XPATH, MESSAGE_XPATH)
-    assert success_message.text == "You have successfully subscribed to this newsletter.", \
+    time.sleep(2)
+    #base_page_obj.wait_for_text_to_be_present_in_element(By.ID, MESSAGE_ID)
+    success_message = driver.find_element(By.ID, MESSAGE_ID)
+    assert "You have successfully subscribed to this newsletter." in success_message.text, \
         f"Expected success message not displayed. Actual message: {success_message.text}"
     
     expectedResolution = 'desktop'

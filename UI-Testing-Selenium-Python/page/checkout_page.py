@@ -2,8 +2,8 @@ from selenium.webdriver.support.select import Select
 from selenium.webdriver.common.by import By
 from .base_page import BasePage
 from utils.locators import CheckoutPageLocators
-from utils.product_interactions import wait_for_element_to_be_visible_and_clickable
-
+from page.base_page import BasePage
+import utils.config as config
 class CheckoutPage(BasePage):
     ADDRESS_ID = "field-address1"
     FIELD_ID = "field-postcode"
@@ -33,8 +33,9 @@ class CheckoutPage(BasePage):
     def is_terms_accepted(self):
         return self.find_element(By.ID, self.CONDITIONS_TO_APPROVE_ID).is_selected()
     
-    def acc(self,*locator,wait_time):
-        wait_for_element_to_be_visible_and_clickable(self.driver,locator[0] ,locator[1],wait_time)
+    def acc(self,*locator):
+        BasePage_obj=BasePage(self.driver)
+        BasePage_obj.wait_for_element_to_be_visible_and_clickable(locator[0] ,locator[1])
         return self.find_element(*locator).click()
         #obj (la instancia) se pasa automáticamente como el primer argumento.
         

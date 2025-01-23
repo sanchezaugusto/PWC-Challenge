@@ -14,12 +14,14 @@
   "checkout": {
     "address": "P. Sherman 42 Wallaby Street",
     "postcode": "01234",
+    "country_value": "21",
     "city": "Sidney",
     "state_value": "2"
   },
   "language":{
-    "spanish": "//*[@id='_desktop_language_selector']/div/div/ul/li[7]/a",
-    "italian": "//*[@id='_desktop_language_selector']/div/div/ul/li[5]/a"
+    "spanish": "Italiano",
+    "italian": "Indonesia",
+    "english": "English"
   },
   "device":{
     "desktop": "//*[@id='devices']/li[1]/a/i",

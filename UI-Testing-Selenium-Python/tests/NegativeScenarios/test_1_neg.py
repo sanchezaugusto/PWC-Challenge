@@ -32,7 +32,6 @@ def test_user_registration(driver):
     driver.find_element(By.NAME, "firstname").send_keys(REGISTRATION_DATA["firstname"])
     driver.find_element(By.NAME, "lastname").send_keys(REGISTRATION_DATA["lastname"])
     driver.find_element(By.NAME, "email").send_keys("wrong@mail")
-    # driver.find_element(By.NAME, "email").send_keys(REGISTRATION_DATA["email"])
     driver.find_element(By.NAME, "password").send_keys(REGISTRATION_DATA["password"])
     driver.find_element(By.NAME, "psgdpr").click()      #acepta condicion
     driver.find_element(By.NAME, "customer_privacy").click()    #acepta condicion
