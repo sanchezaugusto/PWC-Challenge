@@ -20,7 +20,7 @@ APP_URL = "APP_URL"
 
 
 def test_main4(driver):
-
+    driver, device = driver
     CHECKOUT_BUTTON_XPATH = "//*[@id='main']/div/div[2]/div[1]/div[2]/div/a"
     #WAIT_TIME = 25
     PRODUCT_XPATH = "//*[@id='content']/section[1]/div/div[3]/article/div/div[1]/a/picture/img"
@@ -30,7 +30,7 @@ def test_main4(driver):
     checkout_obj=CheckoutPage(driver)
     base_page_obj = BasePage(driver)
 
-    base_page_obj.configHome(url=APP_URL, device=DEVICE["desktop"])
+    base_page_obj.configHome(url=APP_URL, device=DEVICE[device])
     # Arrange
     time.sleep(50)
 

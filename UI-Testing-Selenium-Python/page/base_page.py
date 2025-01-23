@@ -26,7 +26,9 @@ class BasePage:
         home_button_selectors = [
             (By.XPATH, "//*[@id='_desktop_logo']/a/img"),
             (By.XPATH, "//*[@id='_desktop_logo']/h1/a/img"),
-            (By.ID, "_desktop_logo")
+            (By.ID, "_desktop_logo"),
+            (By.CSS_SELECTOR, "#_desktop_logo > a > img"),
+            (By.CLASS_NAME, "logo img-fluid"),
         ]
         
         # Intentar localizar el botón Home con los distintos selectores

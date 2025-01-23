@@ -1,7 +1,7 @@
 from selenium.webdriver.common.by import By
 from utils.test_data_loader import load_test_data
 from utils.custom_assertion import assert_resolution
-from page.base_page import BasePage
+from page.home_page import HomePage
 from utils.product_interactions import hover_and_add_to_cart
 from dotenv import load_dotenv
 
@@ -26,18 +26,19 @@ CART_CSS = "#_desktop_cart > div > div > a > span.hidden-sm-down"
 CHECKOUT_BUTTON_XPATH = "//*[@id='main']/div/div[2]/div[1]/div[2]/div/a"
 
 def test_modify_shopping_cart(driver):
-    base_page_obj = BasePage(driver)
+    driver, device = driver
+    home_page = HomePage(driver)
 
-    base_page_obj.configHome(url=APP_URL, device = DEVICE["desktop"])
+    home_page.configHome(url=APP_URL, device = DEVICE[device])
     # Arrange
-    base_page_obj.wait_for_element(By.XPATH, PRODUCT_A_XPATH)   
+    home_page.wait_for_element(By.XPATH, PRODUCT_A_XPATH)   
     
     # Act
     hover_and_add_to_cart(driver, PRODUCT_A_XPATH, QUICK_VIEW_A)
     hover_and_add_to_cart(driver, PRODUCT_B_XPATH, QUICK_VIEW_B)
     hover_and_add_to_cart(driver, PRODUCT_C_XPATH, QUICK_VIEW_C)   
 
-    base_page_obj.wait_for_element_to_be_visible_and_clickable( By.CSS_SELECTOR, CART_CSS)
+    home_page.wait_for_element_to_be_visible_and_clickable( By.CSS_SELECTOR, CART_CSS)
     gotoCart = driver.find_element(By.CSS_SELECTOR, CART_CSS)
     gotoCart.click()
 
@@ -53,15 +54,15 @@ def test_modify_shopping_cart(driver):
     continueA = driver.find_element(By.XPATH, CHECKOUT_BUTTON_XPATH)
     continueA.click()
 
-    base_page_obj.wait_for_element_to_be_visible_and_clickable(By.NAME, CONFIRM_ADDRESS_NAME)
+    home_page.wait_for_element_to_be_visible_and_clickable(By.NAME, CONFIRM_ADDRESS_NAME)
     deliveryButton = driver.find_element(By.NAME, CONFIRM_ADDRESS_NAME)
     deliveryButton.click()
 
-    base_page_obj.wait_for_element_to_be_visible_and_clickable(By.NAME, CONFIRM_DELIVERY_NAME)
+    home_page.wait_for_element_to_be_visible_and_clickable(By.NAME, CONFIRM_DELIVERY_NAME)
     continueButton2 = driver.find_element(By.NAME, CONFIRM_DELIVERY_NAME)
     continueButton2.click()
 
-    base_page_obj.wait_for_element_to_be_visible_and_clickable(By.ID, "conditions-to-approve")
+    home_page.wait_for_element_to_be_visible_and_clickable(By.ID, "conditions-to-approve")
     cond_checkbox = driver.find_element(By.ID, CONDITIONS_TO_APPROVE_ID)
     cond_checkbox.click()
 

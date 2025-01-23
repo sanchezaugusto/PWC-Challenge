@@ -4,7 +4,7 @@ from selenium.webdriver.support import expected_conditions as EC
 from utils.test_data_loader import load_test_data
 from utils.custom_assertion import assert_resolution
 from page.base_page import BasePage
-
+import time
 from dotenv import load_dotenv
 
 from page.home_page import HomePage
@@ -24,23 +24,24 @@ SEND_BUTTON_NAME = "submitMessage"
 SUCCESS_MESSAGE_XPATH = "//*[@id='content']/section/form/div/ul/li"
 
 def test_main2(driver):
+    driver, device = driver
     contact_page = ContactPage(driver)
-    base_page_obj = BasePage(driver)
+    home_page = HomePage(driver)
 
-    base_page_obj.configHome(url=APP_URL, device=DEVICE["desktop"])
+    home_page.configHome(url=APP_URL, device=DEVICE[device])
     # Arrange
-    base_page_obj.wait_for_element( By.ID, CONTACT_US_ID)
+    home_page.wait_for_element( By.ID, CONTACT_US_ID)
 
     # Act
     login_button = driver.find_element(By.ID, CONTACT_US_ID)
     login_button.click()
 
-    base_page_obj.wait_for_element(By.ID, FILE_UPLOAD_ID)
-    #contact_page.fill_contact_form(CONTACTFORM_DATA["email"], CONTACTFORM_DATA["attachment_path"], CONTACTFORM_DATA["message"])
+    # home_page.wait_for_element(By.ID, FILE_UPLOAD_ID)
+    # #contact_page.fill_contact_form(CONTACTFORM_DATA["email"], CONTACTFORM_DATA["attachment_path"], CONTACTFORM_DATA["message"])
     contact_page.fill_contact_form(CONTACTFORM_DATA["email"], CONTACTFORM_DATA["message"])
     
     # Assert
-    base_page_obj.wait_for_element(By.XPATH, SUCCESS_MESSAGE_XPATH)
+    home_page.wait_for_element(By.XPATH, SUCCESS_MESSAGE_XPATH)
     success_message = driver.find_element(By.XPATH, SUCCESS_MESSAGE_XPATH)
 
     assert success_message.text == "Your message has been successfully sent to our team.", \

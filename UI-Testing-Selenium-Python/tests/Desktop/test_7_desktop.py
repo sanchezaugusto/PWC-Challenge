@@ -24,15 +24,15 @@ MESSAGE_ID = "blockEmailSubscription_displayFooterBefore"
 #//*[@id="blockEmailSubscription_displayFooterBefore"]/div/div/form/p
 
 def test_sign_up_newsletter(driver):
-
+    driver, device = driver
     home_page = HomePage(driver)
-    base_page_obj = BasePage(driver)
+    # base_page_obj = BasePage(driver)
     
     # Arrange
-    base_page_obj.configHome(url=APP_URL, device=DEVICE["desktop"])
+    home_page.configHome(url=APP_URL, device=DEVICE[device])
 
     # Act
-    base_page_obj.wait_for_element(By.ID, CONTACT_US_ID)
+    home_page.wait_for_element(By.ID, CONTACT_US_ID)
     home_page.sign_up_newsletter(REGISTRATION_DATA["email"])
 
     # Assert  

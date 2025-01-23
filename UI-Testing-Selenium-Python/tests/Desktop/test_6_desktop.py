@@ -9,7 +9,7 @@ import time
 import os
 from selenium.webdriver.common.action_chains import ActionChains
 
-from page.base_page import BasePage 
+from page.home_page import HomePage 
 
 # Cargar variables de entorno
 load_dotenv()
@@ -23,8 +23,9 @@ APP_URL = "APP_URL"
 
 @pytest.mark.parametrize("language", LANGUAGE_DATA)
 def test_main6(language, driver):
-    base_page_obj = BasePage(driver)
-    base_page_obj.configHome(url=APP_URL, device=DEVICE["desktop"])
+    driver, device = driver
+    home_page = HomePage(driver)
+    home_page.configHome(url=APP_URL, device=DEVICE[device])
 
     time.sleep(20)
     try:    
@@ -65,7 +66,7 @@ def smooth_scroll(driver, start, end, step, delay=0.1):
         time.sleep(delay)
 
 def navigate_through_sections(driver):
-    base_page_obj = BasePage(driver)
+    home_page = HomePage(driver)
     # Navegar al primer elemento
     quickView = WebDriverWait(driver, 30).until(
         EC.presence_of_element_located((By.XPATH, "//*[@id='category-3']/a"))
@@ -94,7 +95,7 @@ def navigate_through_sections(driver):
     time.sleep(5)
     
     # Volver a la página de inicio
-    base_page_obj.go_to_home()
+    home_page.go_to_home()
     time.sleep(10)
     # Navegar al tercer elemento
     quickView3 = WebDriverWait(driver, 30).until(
@@ -124,4 +125,4 @@ def navigate_through_sections(driver):
     time.sleep(10)
     
     # Volver a la página de inicio
-    BasePage.go_to_home(driver)
+    home_page.go_to_home()

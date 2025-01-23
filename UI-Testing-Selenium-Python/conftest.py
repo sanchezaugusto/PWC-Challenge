@@ -11,10 +11,12 @@ from page.base_page import BasePage as BasePage
 
 def pytest_addoption(parser):
     parser.addoption("--browser", action="store", default="chrome", help="Browser to run tests (chrome or firefox)")
+    parser.addoption("--device", action="store", default="desktop", help="Device to run tests (desktop, tabletV, tabletH)")
 
 @pytest.fixture(scope="session")
 def driver(request):
     browser = request.config.getoption("--browser")
+    device = request.config.getoption("--device")
 
     if browser == "chrome":
         service = ChromeService(ChromeDriverManager().install())
@@ -26,14 +28,14 @@ def driver(request):
         raise ValueError(f"Navegador '{browser}' no soportado")
     
     driver.maximize_window()
-    yield driver
+    yield driver, device
     driver.quit()
 
 @pytest.fixture(autouse=True)
 def cleanup_after_test(driver):
+    driver, _ = driver
     yield
     base_page_obj = BasePage(driver)
     base_page_obj.go_to_home()
     
-    # Volver al contenido principal (por si se cambió de frame)
     driver.switch_to.default_content()

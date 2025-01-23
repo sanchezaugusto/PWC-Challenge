@@ -1,15 +1,15 @@
 
 {
   "registration": {
-    "firstname": "Arturo",
-    "lastname": "Perez",
-    "email": "Perez123@mail.com",
+    "firstname": "John",
+    "lastname": "Smith",
+    "email": "6a1b6t9d@anonaddy.me",
     "password": "cguvhibjonko"
   },
   "contact_form": {
-    "attachment_path": "C:\\Users\\Augusto  Sanchez\\Desktop\\Testing Projects\\prueba-selenium-python\\source\\bulon_allen.PNG",
+    "attachment_path": "C:\\Users\\",
     "message": "Average message",
-    "email": "Perez123@mail.com"
+    "email": "6a1b6t9d@anonaddy.me"
   },
   "checkout": {
     "address": "P. Sherman 42 Wallaby Street",
@@ -19,8 +19,8 @@
     "state_value": "2"
   },
   "language":{
-    "spanish": "Italiano",
-    "italian": "Indonesia",
+    "italian": "Italiano",
+    "indonesian": "Indonesia",
     "english": "English"
   },
   "device":{

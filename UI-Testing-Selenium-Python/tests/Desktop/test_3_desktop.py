@@ -23,15 +23,15 @@ FIELD_ID = "field-postcode"
 CITY_ID = "field-city"
 COUNTRY_ID = "field-id_country" 
 STATE_ID = "field-id_state" 
-#STATE_ID = "field-id_state" 21EEUU chrome   21EEUU firefox
 CONFIRM_DELIVERY_NAME = "confirmDeliveryOption"
 CONFIRM_ADDRESS_NAME = "confirm-addresses"
 CONDITIONS_TO_APPROVE_ID = "conditions_to_approve[terms-and-conditions]"
 
 def test_main3(driver):
+    driver, device = driver
     base_page_obj = BasePage(driver)
     
-    base_page_obj.configHome(url=APP_URL, device = DEVICE["desktop"])
+    base_page_obj.configHome(url=APP_URL, device = DEVICE[device])
     # Arrange
     base_page_obj.wait_for_element(By.XPATH, PRODUCT_XPATH)
 
@@ -71,7 +71,6 @@ def test_main3(driver):
     stateBox = driver.find_element(By.ID, STATE_ID)
     select = Select(stateBox)
     select.select_by_value(CHECKOUT_DATA["state_value"])
-    #time.sleep(300)
     deliveryButton = driver.find_element(By.NAME, CONFIRM_ADDRESS_NAME)
     deliveryButton.click()
 
