@@ -1,0 +1,27 @@
+No se pudo encontrar el botón con el selector (xpath, //*[@id='_desktop_logo']/a/img): Message: 
+Stacktrace:
+	GetHandleVerifier [0x0027FD53+23747]
+	(No symbol) [0x00207D54]
+	(No symbol) [0x000DBE53]
+	(No symbol) [0x0011FCA6]
+	(No symbol) [0x0011FEEB]
+	(No symbol) [0x0015D852]
+	(No symbol) [0x00141E44]
+	(No symbol) [0x0015B41E]
+	(No symbol) [0x00141B96]
+	(No symbol) [0x00113F3C]
+	(No symbol) [0x00114EBD]
+	GetHandleVerifier [0x0055AC73+3017699]
+	GetHandleVerifier [0x0056B93B+3086507]
+	GetHandleVerifier [0x005640F2+3055714]
+	GetHandleVerifier [0x00315AF0+637536]
+	(No symbol) [0x00210A5D]
+	(No symbol) [0x0020DA28]
+	(No symbol) [0x0020DBC5]
+	(No symbol) [0x002007F0]
+	BaseThreadInitThunk [0x7768FCC9+25]
+	RtlGetAppContainerNamedObjectPath [0x77BF809E+286]
+	RtlGetAppContainerNamedObjectPath [0x77BF806E+238]
+	(No symbol) [0x00000000]
+
+Botón Home encontrado y clickeado con selector: xpath = //*[@id='_desktop_logo']/h1/a/img

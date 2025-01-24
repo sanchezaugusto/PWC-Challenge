@@ -54,8 +54,6 @@ def change_language(driver, language):
     hover2.perform()
     quickView2.click()
 
-   
-
 # Desplazamiento suave hacia abajo en la página.
 def smooth_scroll(driver, start, end, step, delay=0.1):
     if end is None:

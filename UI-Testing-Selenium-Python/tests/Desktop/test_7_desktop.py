@@ -1,7 +1,6 @@
 from selenium.webdriver.common.by import By
 from utils.test_data_loader import load_test_data
 from utils.custom_assertion import assert_resolution
-from page.base_page import BasePage
 import time
 from dotenv import load_dotenv
 
@@ -12,21 +11,14 @@ load_dotenv()
 REGISTRATION_DATA = load_test_data("test_data.json")["registration"]
 DEVICE = load_test_data("test_data.json")["device"]
 APP_URL = "APP_URL"
-WAIT_TIME = 20
 CONTACT_US_ID = "contact-link"
-EMAIL_BOX_NAME = "email"
-SUSCRIBE_BUTTON_XPATH = "//*[@id='blockEmailSubscription_displayFooterBefore']/div/div/form/div/div[1]/input[1]"
-SUSCRIBE_BUTTON_NAME= "submitNewsletter"
+#EMAIL_BOX_NAME = "email"
+#SUSCRIBE_BUTTON_XPATH = "//*[@id='blockEmailSubscription_displayFooterBefore']/div/div/form/div/div[1]/input[1]"
+#SUSCRIBE_BUTTON_NAME= "submitNewsletter"
 MESSAGE_ID = "blockEmailSubscription_displayFooterBefore"
-#MESSAGE_XPATH = "//*[@id='blockEmailSubscription_displayFooterBefore']/div/div/form"
-#MESSAGE_XPATH = "//*[@id='blockEmailSubscription_displayFooterBefore']/div/div/form/div/div[2]/p[2]"
-#//*[@id="blockEmailSubscription_displayFooterBefore"]/div/div/form/div/div[2]/p[2]
-#//*[@id="blockEmailSubscription_displayFooterBefore"]/div/div/form/p
-
 def test_sign_up_newsletter(driver):
     driver, device = driver
     home_page = HomePage(driver)
-    # base_page_obj = BasePage(driver)
     
     # Arrange
     home_page.configHome(url=APP_URL, device=DEVICE[device])

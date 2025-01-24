@@ -12,7 +12,7 @@ APP_URL = "APP_URL"
 CONFIRM_ADDRESS_NAME = "confirm-addresses"
 CONDITIONS_TO_APPROVE_ID = "conditions_to_approve[terms-and-conditions]"
 CONFIRM_DELIVERY_NAME = "confirmDeliveryOption"
-WAIT_TIME = 20
+#WAIT_TIME = 20
 PRODUCT_A_XPATH = "//*[@id='content']/section[1]/div/div[3]/article/div/div[1]/a/picture/img"
 QUICK_VIEW_A = "//*[@id='content']/section[1]/div/div[3]/article/div/div[1]/div/a"
 

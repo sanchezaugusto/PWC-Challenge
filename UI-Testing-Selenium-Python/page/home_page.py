@@ -31,3 +31,4 @@ class HomePage(BasePage):
     def sign_up_newsletter(self, email):
         self.enter_text(email, *HomePageLocators.NEWSLETTER_EMAIL_BOX)
         self.click_element(*HomePageLocators.NEWSLETTER_SUBSCRIBE_BUTTON)
+

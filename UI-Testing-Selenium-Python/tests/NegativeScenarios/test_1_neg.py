@@ -6,15 +6,20 @@ from selenium.webdriver.support import expected_conditions as EC
 from utils.test_data_loader import load_test_data
 from utils.custom_assertion import assert_resolution
 from dotenv import load_dotenv
-from page.home import configHome
+#from page.home import configHome
+
+from page.home_page import HomePage 
 
 load_dotenv()
 
 REGISTRATION_DATA = load_test_data("test_data.json")["registration"]
 DEVICE = load_test_data("test_data.json")["device"]
+APP_URL = "APP_URL"
 
 def test_user_registration(driver):
-    configHome(driver,url="APP_URL", device = DEVICE["desktop"])
+    driver, device = driver
+    home_page = HomePage(driver)
+    home_page.configHome(url=APP_URL, device=DEVICE[device])
     
     WebDriverWait(driver, 50).until(
     EC.presence_of_element_located((By.ID, "_desktop_user_info")))

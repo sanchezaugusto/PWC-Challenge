@@ -2,7 +2,6 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from utils.test_data_loader import load_test_data
 from utils.custom_assertion import assert_resolution
-from page.base_page import BasePage
 
 from dotenv import load_dotenv
 
@@ -14,8 +13,6 @@ load_dotenv()
 REGISTRATION_DATA = load_test_data("test_data.json")["registration"]
 DEVICE = load_test_data("test_data.json")["device"]
 APP_URL = "APP_URL"
-WAIT_TIME = 20
-SIGNIN_ID = "_desktop_user_info"
 REGISTER_LINK_TEXT = "No account? Create one here"
 SEND_BUTTON_SELECTOR = "//*[@id='customer-form']/footer/button"
 REG_DATA_XPATH = "//*[@id='_desktop_user_info']/div/a[2]/span"
@@ -28,8 +25,6 @@ def test_main1(driver):
 
     # Arrange   
     home_page.configHome(APP_URL, DEVICE[device])
-    # home_page.wait_for_element( By.ID, SIGNIN_ID)
-    # driver.find_element(By.ID, SIGNIN_ID).click()
     home_page.wait_for_element( By.PARTIAL_LINK_TEXT, "Sign in")
     driver.find_element(By.PARTIAL_LINK_TEXT, "Sign in").click()
 

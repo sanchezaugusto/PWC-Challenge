@@ -4,7 +4,7 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from utils.test_data_loader import load_test_data
-from page.home import configHome
+from page.home_page import HomePage 
 import time
 from dotenv import load_dotenv
 from utils.custom_assertion import assert_resolution
@@ -12,9 +12,12 @@ from utils.custom_assertion import assert_resolution
 load_dotenv()
 
 DEVICE = load_test_data("test_data.json")["device"]
+APP_URL = "APP_URL"
 
 def test_main7(driver):
-    configHome(driver,url="APP_URL", device = DEVICE["desktop"])
+    driver, device = driver
+    home_page = HomePage(driver)
+    home_page.configHome(url=APP_URL, device=DEVICE[device])
 
     WebDriverWait(driver, 20).until(
     EC.presence_of_element_located((By.ID, "contact-link")))
@@ -37,17 +40,4 @@ def test_main7(driver):
     userData = driver.find_element(By.XPATH, "//*[@id='blockEmailSubscription_displayFooterBefore']/div/div/form/p")
     assert userData.text == expectedMessage, \
     f"Expected success message not displayed. Actual message: {userData.text}"
-
-    # WebDriverWait(driver, 10).until(
-    # EC.presence_of_element_located((By.XPATH, "//*[@id='blockEmailSubscription_displayFooterBefore']/div/div/form/p")))
-    # success_message = driver.find_element(By.XPATH, "//*[@id='blockEmailSubscription_displayFooterBefore']/div/div/form/p")
-    # assert success_message.text == "You have successfully subscribed to this newsletter.", \
-    #     f"Expected success message not displayed. Actual message: {success_message.text}"
-    
-    # expectedResolution = 'desktop'
-    # assert_resolution(driver,expectedResolution)
-
-    
-    # time.sleep(5)
-    # driver.quit()
 

@@ -1,0 +1,1 @@
+Botón Home encontrado y clickeado con selector: xpath = //*[@id='_desktop_logo']/a/img
