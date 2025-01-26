@@ -32,3 +32,17 @@ class HomePage(BasePage):
         self.enter_text(email, *HomePageLocators.NEWSLETTER_EMAIL_BOX)
         self.click_element(*HomePageLocators.NEWSLETTER_SUBSCRIBE_BUTTON)
 
+    def click_on_sign_in(self):
+        self.wait_for_element(*HomePageLocators.SIGN_IN_LINK_TEXT)
+        self.click_element(*HomePageLocators.SIGN_IN_LINK_TEXT)
+
+    def click_on_register(self):
+        self.wait_for_element(*HomePageLocators.REGISTER_LINK_TEXT)
+        self.click_element(*HomePageLocators.REGISTER_LINK_TEXT)
+
+    def wait_for_user_info(self):
+        self.wait_for_element(*HomePageLocators.REG_DATA_XPATH)
+
+    def click_on_contact_us(self):
+        self.wait_for_element(*HomePageLocators.CONTACT_US_ID)
+        self.click_element(*HomePageLocators.CONTACT_US_ID)

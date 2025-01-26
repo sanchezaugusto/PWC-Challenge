@@ -3,6 +3,7 @@ from utils.locators import AccountPageLocators
 
 class AccountPage(BasePage):
     def create_account(self, firstname, lastname, email, password):
+        self.wait_for_element(*AccountPageLocators.SUBMIT_BUTTON)
         self.enter_text(firstname, *AccountPageLocators.FIRSTNAME_FIELD)
         self.enter_text(lastname, *AccountPageLocators.LASTNAME_FIELD)
         self.enter_text(email, *AccountPageLocators.EMAIL_FIELD)

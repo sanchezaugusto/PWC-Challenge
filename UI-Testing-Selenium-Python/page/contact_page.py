@@ -8,3 +8,6 @@ class ContactPage(BasePage):
         self.enter_text(message, *ContactPageLocators.MESSAGE_BOX)
         #self.find_element(*ContactPageLocators.FILE_UPLOAD).send_keys(attachment_path)
         self.click_element(*ContactPageLocators.SEND_BUTTON)
+
+    def wait_for_message(self):
+        self.wait_for_element(*ContactPageLocators.SUCCESS_MESSAGE_XPATH)

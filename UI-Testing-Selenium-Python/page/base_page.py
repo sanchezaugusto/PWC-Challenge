@@ -1,4 +1,5 @@
 from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
 from utils import config
@@ -47,6 +48,17 @@ class BasePage:
         else:
             # Si no se encuentra ningún botón
             raise Exception("No se pudo encontrar el botón Home usando los selectores disponibles.")
+
+    # WAITS    
+    # def wait_for_element(driver, by, value, timeout=10):
+    #     return WebDriverWait(driver, timeout).until(EC.presence_of_element_located((by, value)))
+
+    # def wait_for_element_to_be_visible_and_clickable(driver, by, value, timeout=10):
+    #     return WebDriverWait(driver, timeout).until(EC.element_to_be_clickable((by, value)))
+
+    # def click_element(driver, by, value, timeout=10):
+    #     element = wait_for_element_to_be_visible_and_clickable(driver, by, value, timeout)
+    #     element.click()
     
     def wait_for_element(self, by, value):
         return WebDriverWait(self.driver, config.WAIT_TIME).until(
@@ -76,6 +88,8 @@ class BasePage:
             EC.text_to_be_present_in_element((by, value), text)
     )
 
+    
+    #CONFIG HOME
     def configHome(self,url, device):
         
         self.driver.get(os.getenv(url))
@@ -94,7 +108,10 @@ class BasePage:
             
         myDevice.click()
         self.driver.switch_to.frame(self.driver.find_element(By.ID, "framelive"))
-        
-    # def click_element(driver, by, value):
-    #     element = (driver, by, value, 20)
-    #     element.click()
+
+    #HOVER AND ADD TO CART
+    # def hover_and_add_to_cart(self, product_xpath, add_to_cart_xpath, timeout=10):
+    #     product_element = wait_for_element(self, By.XPATH, product_xpath)
+    #     add_to_cart_element = wait_for_element_to_be_visible_and_clickable(self, By.XPATH, add_to_cart_xpath, timeout)
+    #     actions = ActionChains(self)
+    #     actions.move_to_element(product_element).click(add_to_cart_element).perform() 
