@@ -87,6 +87,7 @@ class BasePage:
         return WebDriverWait(self.driver, config.WAIT_TIME).until(
             EC.text_to_be_present_in_element((by, value), text)
     )
+    
 
     
     #CONFIG HOME

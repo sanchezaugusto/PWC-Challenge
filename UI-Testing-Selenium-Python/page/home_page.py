@@ -29,6 +29,7 @@ class HomePage(BasePage):
         self.click_element(*HomePageLocators.SIGN_IN_BUTTON)
 
     def sign_up_newsletter(self, email):
+        self.wait_for_element(*HomePageLocators.NEWSLETTER_EMAIL_BOX)
         self.enter_text(email, *HomePageLocators.NEWSLETTER_EMAIL_BOX)
         self.click_element(*HomePageLocators.NEWSLETTER_SUBSCRIBE_BUTTON)
 
@@ -46,3 +47,6 @@ class HomePage(BasePage):
     def click_on_contact_us(self):
         self.wait_for_element(*HomePageLocators.CONTACT_US_ID)
         self.click_element(*HomePageLocators.CONTACT_US_ID)
+
+    def wait_for_newsletter_message(self):
+        self.wait_for_element(*HomePageLocators.MESSAGE_CSS)

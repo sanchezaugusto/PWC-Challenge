@@ -9,7 +9,8 @@ class HomePageLocators:
     NEWSLETTER_EMAIL_BOX = (By.NAME, 'email')
     NEWSLETTER_SUBSCRIBE_BUTTON = (By.NAME, 'submitNewsletter')
     NEWSLETTER_SUCCESS_MESSAGE = (By.XPATH, "//*[@id='blockEmailSubscription_displayFooterBefore']/div/div/form/div/div[2]/p[2]")
-
+    MESSAGE_ID = "blockEmailSubscription_displayFooterBefore"
+    MESSAGE_CSS = (By.CSS_SELECTOR,"p.alert.alert-success")
 
 class AccountPageLocators:
     FIRSTNAME_FIELD = (By.NAME, 'firstname')
