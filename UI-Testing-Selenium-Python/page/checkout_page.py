@@ -4,6 +4,7 @@ from .base_page import BasePage
 from utils.locators import CheckoutPageLocators
 from page.base_page import BasePage
 import utils.config as config
+import time
 class CheckoutPage(BasePage):
     ADDRESS_ID = "field-address1"
     FIELD_ID = "field-postcode"
@@ -14,7 +15,8 @@ class CheckoutPage(BasePage):
     CONDITIONS_TO_APPROVE_ID = "conditions_to_approve[terms-and-conditions]"
 
     def fill_address(self, address, postcode, city, country_value, state_value):
-        self.wait_for_element(*CheckoutPageLocators.ADDRESS_ID)
+        time.sleep(5)
+        #self.wait_for_element(*CheckoutPageLocators.ADDRESS_ID)
         self.enter_text(address, *CheckoutPageLocators.ADDRESS_ID)
         self.enter_text(postcode, *CheckoutPageLocators.POSTCODE_ID)
         self.enter_text(city, *CheckoutPageLocators.CITY_ID)
@@ -40,17 +42,28 @@ class CheckoutPage(BasePage):
     #     self.click_element(By.ID, self.CONDITIONS_TO_APPROVE_ID)
 
     def is_terms_accepted(self):
-        return self.find_element(By.ID, self.CONDITIONS_TO_APPROVE_ID).is_selected()
+        return self.find_element(*CheckoutPageLocators.CONDITIONS_TO_APPROVE_ID).is_selected()
     
-    def acc(self,*locator):
-        BasePage_obj=BasePage(self.driver)
-        BasePage_obj.wait_for_element_to_be_visible_and_clickable(locator[0] ,locator[1])
-        return self.find_element(*locator).click()
-        #obj (la instancia) se pasa automáticamente como el primer argumento.
+    # def acc(self,*locator):
+    #     BasePage_obj=BasePage(self.driver)
+    #     BasePage_obj.wait_for_element_to_be_visible_and_clickable(locator[0] ,locator[1])
+    #     return self.find_element(*locator).click()
+    #     #obj (la instancia) se pasa automáticamente como el primer argumento.
 
     def confirm_delivery(self):
         self.wait_for_element_to_be_visible_and_clickable(*CheckoutPageLocators.CONFIRM_DELIVERY_NAME).click()
 
     def accept_terms(self):
         self.wait_for_element_to_be_visible_and_clickable(*CheckoutPageLocators.CONDITIONS_TO_APPROVE_ID).click()
-        
+    
+    def cond_checkbox(self):
+        return self.find_element(*CheckoutPageLocators.CONDITIONS_TO_APPROVE_ID_TERMS)
+    
+    def wait_and_click_add_to_cart(self):
+        self.wait_and_click(*CheckoutPageLocators.ADD_TO_CART_XPATH)
+
+    def wait_and_click_check_from_modal(self):
+        self.wait_and_click(*CheckoutPageLocators.CHECKOUT_BUTTON_MODAL_XPATH)
+
+    def wait_and_click_check_from_cart(self):
+        self.wait_and_click(*CheckoutPageLocators.CHECKOUT_BUTTON_CART_XPATH)

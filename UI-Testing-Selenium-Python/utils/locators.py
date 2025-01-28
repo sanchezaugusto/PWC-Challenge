@@ -12,6 +12,15 @@ class HomePageLocators:
     MESSAGE_ID = "blockEmailSubscription_displayFooterBefore"
     MESSAGE_CSS = (By.CSS_SELECTOR,"p.alert.alert-success")
 
+    PRODUCT_A_XPATH = (By.XPATH,"//*[@id='content']/section[1]/div/div[3]/article/div/div[1]/a/picture/img")
+    QUICK_VIEW_A=(By.XPATH,"//*[@id='content']/section[1]/div/div[3]/article/div/div[1]/div/a")
+    PRODUCT_B_XPATH=(By.XPATH,"//*[@id='content']/section[1]/div/div[6]/article/div/div[1]/a/picture/img")
+    QUICK_VIEW_B=(By.XPATH,"//*[@id='content']/section[1]/div/div[6]/article/div/div[1]/div/a")
+    PRODUCT_C_XPATH=(By.XPATH,"//*[@id='content']/section[1]/div/div[7]/article/div/div[1]/a/picture/img")
+    QUICK_VIEW_C=(By.XPATH,"//*[@id='content']/section[1]/div/div[7]/article/div/div[1]/div/a")
+
+    CONDITIONS_TO_APPROVE_ID =(By.ID,"conditions_to_approve[terms-and-conditions]")
+
 class AccountPageLocators:
     FIRSTNAME_FIELD = (By.NAME, 'firstname')
     LASTNAME_FIELD = (By.NAME, 'lastname')
@@ -39,4 +48,9 @@ class CheckoutPageLocators:
     CONFIRM_DELIVERY_NAME = (By.NAME, 'confirmDeliveryOption')
     CONFIRM_ADDRESS_NAME = (By.NAME, 'confirm-addresses')
     #CONDITIONS_TO_APPROVE_ID = (By.NAME, 'conditions_to_approve[terms-and-conditions]')
-    CONDITIONS_TO_APPROVE_ID = (By.ID, 'conditions-to-approve')    
+    CONDITIONS_TO_APPROVE_ID = (By.ID, 'conditions-to-approve')   
+    CONDITIONS_TO_APPROVE_ID_TERMS =(By.ID,"conditions_to_approve[terms-and-conditions]") 
+
+    ADD_TO_CART_XPATH =(By.XPATH,"//*[@id='add-to-cart-or-refresh']/div[2]/div/div[2]/button") 
+    CHECKOUT_BUTTON_MODAL_XPATH = (By.XPATH,"//*[@id='blockcart-modal']/div/div/div[2]/div/div[2]/div/div/a")
+    CHECKOUT_BUTTON_CART_XPATH = (By.XPATH,"//*[@id='main']/div/div[2]/div[1]/div[2]/div/a")

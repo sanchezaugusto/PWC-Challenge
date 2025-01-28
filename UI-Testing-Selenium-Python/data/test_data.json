@@ -20,8 +20,7 @@
   },
   "language":{
     "italian": "Italiano",
-    "indonesian": "Indonesia",
-    "english": "English"
+    "indonesian": "Indonesia"
   },
   "device":{
     "desktop": "//*[@id='devices']/li[1]/a/i",

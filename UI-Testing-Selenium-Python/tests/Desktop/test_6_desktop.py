@@ -16,10 +16,16 @@ load_dotenv()
 
 # Cargar los datos de prueba
 LANGUAGE_DATA = list(load_test_data("test_data.json")["language"].values())
-print(LANGUAGE_DATA)
 DEVICE = load_test_data("test_data.json")["device"]
 
 APP_URL = "APP_URL"
+
+@pytest.fixture(scope="function", autouse=True)
+def reset_language_to_english(driver):
+    driver, device = driver
+    yield
+    # Cambiar el idioma a inglés después de cada prueba
+    change_language(driver, "English")
 
 @pytest.mark.parametrize("language", LANGUAGE_DATA)
 def test_main6(language, driver):

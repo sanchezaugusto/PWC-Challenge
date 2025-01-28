@@ -4,6 +4,7 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
 from utils import config
 import os
+import time
 
 class BasePage:
     def __init__(self, driver):
@@ -87,8 +88,18 @@ class BasePage:
         return WebDriverWait(self.driver, config.WAIT_TIME).until(
             EC.text_to_be_present_in_element((by, value), text)
     )
-    
 
+    def wait_and_click(self, by, value):
+        self.wait_for_element_to_be_visible_and_clickable(by,value)
+        element = self.find_element(by, value)
+        time.sleep(5)
+        element.click()
+
+    def wait_element_and_click(self, by, value):
+        self.wait_for_element(by,value)
+        checkCartA = self.find_element(by,value)
+        time.sleep(5)
+        checkCartA.click()
     
     #CONFIG HOME
     def configHome(self,url, device):

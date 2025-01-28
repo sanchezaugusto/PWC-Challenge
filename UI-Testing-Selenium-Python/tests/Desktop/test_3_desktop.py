@@ -5,7 +5,7 @@ from page.checkout_page import CheckoutPage
 from utils.test_data_loader import load_test_data
 from utils.custom_assertion import assert_resolution
 from dotenv import load_dotenv
-
+import time
 load_dotenv()
 
 CHECKOUT_DATA = load_test_data("test_data.json")["checkout"]
@@ -28,18 +28,24 @@ def test_main3(driver):
     home_page.wait_for_element(By.XPATH, PRODUCT_XPATH)
     product1 = driver.find_element(By.XPATH, PRODUCT_XPATH)
     product1.click()
+    
+    checkout_page.wait_and_click_add_to_cart()
+    checkout_page.wait_and_click_check_from_modal()
+    checkout_page.wait_and_click_check_from_cart()
+    # home_page.wait_for_element_to_be_visible_and_clickable(By.XPATH, ADD_TO_CART_XPATH)
+    # addtocartButton = driver.find_element(By.XPATH, ADD_TO_CART_XPATH)
+    # time.sleep(5)
+    # addtocartButton.click()
 
-    home_page.wait_for_element_to_be_visible_and_clickable(By.XPATH, ADD_TO_CART_XPATH)
-    addtocartButton = driver.find_element(By.XPATH, ADD_TO_CART_XPATH)
-    addtocartButton.click()
+    # home_page.wait_for_element_to_be_visible_and_clickable(By.XPATH, CHECKOUT_BUTTON_XPATH)
+    # checkoutButton = driver.find_element(By.XPATH, CHECKOUT_BUTTON_XPATH)
+    # time.sleep(5)
+    # checkoutButton.click()
 
-    home_page.wait_for_element_to_be_visible_and_clickable(By.XPATH, CHECKOUT_BUTTON_XPATH)
-    checkoutButton = driver.find_element(By.XPATH, CHECKOUT_BUTTON_XPATH)
-    checkoutButton.click()
-
-    home_page.wait_for_element_to_be_visible_and_clickable(By.XPATH, CHECKOUT_BUTTON2_XPATH)
-    checkoutButton2 = driver.find_element(By.XPATH, CHECKOUT_BUTTON2_XPATH)
-    checkoutButton2.click()
+    # home_page.wait_for_element_to_be_visible_and_clickable(By.XPATH, CHECKOUT_BUTTON2_XPATH)
+    # checkoutButton2 = driver.find_element(By.XPATH, CHECKOUT_BUTTON2_XPATH)
+    # time.sleep(5)
+    # checkoutButton2.click()
 
     checkout_page.fill_address( CHECKOUT_DATA["address"], 
                                 CHECKOUT_DATA["postcode"],
@@ -52,9 +58,8 @@ def test_main3(driver):
     checkout_page.accept_terms()
 
     # Assert
-    payment1Button = driver.find_element(By.ID, CONDITIONS_TO_APPROVE_ID)
-    assert payment1Button.is_selected(), "El botón no se seleccionó después del clic."
-    
+    # payment1Button = driver.find_element(By.ID, CONDITIONS_TO_APPROVE_ID)
+    assert checkout_page.cond_checkbox().is_selected(), "El botón no se seleccionó después del clic."
     expectedResolution = 'desktop'
     assert_resolution(driver,expectedResolution)
 
