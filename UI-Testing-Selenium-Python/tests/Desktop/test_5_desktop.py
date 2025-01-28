@@ -2,6 +2,7 @@ from selenium.webdriver.common.by import By
 from utils.test_data_loader import load_test_data
 from utils.custom_assertion import assert_resolution
 from page.home_page import HomePage
+from page.checkout_page import CheckoutPage
 from utils.product_interactions import hover_and_add_to_cart
 from dotenv import load_dotenv
 
@@ -28,6 +29,7 @@ CHECKOUT_BUTTON_XPATH = "//*[@id='main']/div/div[2]/div[1]/div[2]/div/a"
 def test_modify_shopping_cart(driver):
     driver, device = driver
     home_page = HomePage(driver)
+    checkout_page = CheckoutPage(driver)
 
     home_page.configHome(url=APP_URL, device = DEVICE[device])
     # Arrange
@@ -54,19 +56,23 @@ def test_modify_shopping_cart(driver):
     continueA = driver.find_element(By.XPATH, CHECKOUT_BUTTON_XPATH)
     continueA.click()
 
-    home_page.wait_for_element_to_be_visible_and_clickable(By.NAME, CONFIRM_ADDRESS_NAME)
-    deliveryButton = driver.find_element(By.NAME, CONFIRM_ADDRESS_NAME)
-    deliveryButton.click()
+    # home_page.wait_for_element_to_be_visible_and_clickable(By.NAME, CONFIRM_ADDRESS_NAME)
+    # deliveryButton = driver.find_element(By.NAME, CONFIRM_ADDRESS_NAME)
+    # deliveryButton.click()
 
-    home_page.wait_for_element_to_be_visible_and_clickable(By.NAME, CONFIRM_DELIVERY_NAME)
-    continueButton2 = driver.find_element(By.NAME, CONFIRM_DELIVERY_NAME)
-    continueButton2.click()
+    # home_page.wait_for_element_to_be_visible_and_clickable(By.NAME, CONFIRM_DELIVERY_NAME)
+    # continueButton2 = driver.find_element(By.NAME, CONFIRM_DELIVERY_NAME)
+    # continueButton2.click()
 
-    home_page.wait_for_element_to_be_visible_and_clickable(By.ID, "conditions-to-approve")
-    cond_checkbox = driver.find_element(By.ID, CONDITIONS_TO_APPROVE_ID)
-    cond_checkbox.click()
+    # home_page.wait_for_element_to_be_visible_and_clickable(By.ID, "conditions-to-approve")
+    # cond_checkbox = driver.find_element(By.ID, CONDITIONS_TO_APPROVE_ID)
+    # cond_checkbox.click()
+    checkout_page.confirm_address()
+    checkout_page.confirm_delivery()
+    checkout_page.accept_terms()
 
     # Assert
+    cond_checkbox = driver.find_element(By.ID, CONDITIONS_TO_APPROVE_ID)
     assert cond_checkbox.is_selected(), "El botón no se seleccionó después del clic."
     expectedResolution = 'desktop'
     assert_resolution(driver,expectedResolution)

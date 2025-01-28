@@ -1,7 +1,6 @@
 from selenium.webdriver.common.by import By
 from utils.test_data_loader import load_test_data
 from utils.custom_assertion import assert_resolution
-import time
 from dotenv import load_dotenv
 from page.home_page import HomePage
 

@@ -31,7 +31,12 @@ class ContactPageLocators:
 
 class CheckoutPageLocators:
     WAIT_TIME = 25
+    ADDRESS_ID = (By.ID,'field-address1')
+    POSTCODE_ID = (By.ID,"field-postcode")
+    CITY_ID = (By.ID,"field-city")
+    COUNTRY_ID = (By.ID,"field-id_country") 
+    STATE_ID = (By.ID,"field-id_state")
     CONFIRM_DELIVERY_NAME = (By.NAME, 'confirmDeliveryOption')
     CONFIRM_ADDRESS_NAME = (By.NAME, 'confirm-addresses')
     #CONDITIONS_TO_APPROVE_ID = (By.NAME, 'conditions_to_approve[terms-and-conditions]')
-    # CONDITIONS_TO_APPROVE_ID = (By.ID, 'conditions-to-approve')    
+    CONDITIONS_TO_APPROVE_ID = (By.ID, 'conditions-to-approve')    

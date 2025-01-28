@@ -26,12 +26,12 @@ def test_main4(driver):
     CART_CSS = "#_desktop_cart > div > div > a > span.hidden-sm-down"
 
     locators=CheckoutPageLocators()
-    checkout_obj=CheckoutPage(driver)
+    checkout_page=CheckoutPage(driver)
     home_page = HomePage(driver)
 
     home_page.configHome(url=APP_URL, device=DEVICE[device])
     # Arrange
-    time.sleep(50)
+    time.sleep(5)
 
     home_page.wait_for_element(By.XPATH, PRODUCT_XPATH)
     
@@ -48,10 +48,12 @@ def test_main4(driver):
     checkCartA = driver.find_element(By.XPATH, CHECKOUT_BUTTON_XPATH)
     checkCartA.click()
     
-    checkout_obj.acc(*locators.CONFIRM_ADDRESS_NAME)
-    checkout_obj.acc(*locators.CONFIRM_DELIVERY_NAME)
-    checkout_obj.acc(*locators.CONDITIONS_TO_APPROVE_ID)
-
+    # checkout_obj.acc(*locators.CONFIRM_ADDRESS_NAME)
+    # checkout_obj.acc(*locators.CONFIRM_DELIVERY_NAME)
+    # checkout_obj.acc(*locators.CONDITIONS_TO_APPROVE_ID)
+    checkout_page.confirm_address()
+    checkout_page.confirm_delivery()
+    checkout_page.accept_terms()
     
     # Assert
     cond_checkbox = driver.find_element(By.ID, "conditions_to_approve[terms-and-conditions]")
