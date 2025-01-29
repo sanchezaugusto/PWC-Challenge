@@ -11,6 +11,8 @@ class HomePageLocators:
     NEWSLETTER_SUCCESS_MESSAGE = (By.XPATH, "//*[@id='blockEmailSubscription_displayFooterBefore']/div/div/form/div/div[2]/p[2]")
     MESSAGE_ID = "blockEmailSubscription_displayFooterBefore"
     MESSAGE_CSS = (By.CSS_SELECTOR,"p.alert.alert-success")
+    PRODUCT_XPATH = (By.XPATH,"//*[@id='content']/section[1]/div/div[1]/article/div/div[1]/a")
+
 
     PRODUCT_A_XPATH = (By.XPATH,"//*[@id='content']/section[1]/div/div[3]/article/div/div[1]/a/picture/img")
     QUICK_VIEW_A=(By.XPATH,"//*[@id='content']/section[1]/div/div[3]/article/div/div[1]/div/a")
@@ -20,6 +22,7 @@ class HomePageLocators:
     QUICK_VIEW_C=(By.XPATH,"//*[@id='content']/section[1]/div/div[7]/article/div/div[1]/div/a")
 
     CONDITIONS_TO_APPROVE_ID =(By.ID,"conditions_to_approve[terms-and-conditions]")
+    
 
 class AccountPageLocators:
     FIRSTNAME_FIELD = (By.NAME, 'firstname')
@@ -54,3 +57,9 @@ class CheckoutPageLocators:
     ADD_TO_CART_XPATH =(By.XPATH,"//*[@id='add-to-cart-or-refresh']/div[2]/div/div[2]/button") 
     CHECKOUT_BUTTON_MODAL_XPATH = (By.XPATH,"//*[@id='blockcart-modal']/div/div/div[2]/div/div[2]/div/div/a")
     CHECKOUT_BUTTON_CART_XPATH = (By.XPATH,"//*[@id='main']/div/div[2]/div[1]/div[2]/div/a")
+
+    CART_CSS = (By.CSS_SELECTOR,"#_desktop_cart > div > div > a > span.hidden-sm-down")
+
+
+
+    

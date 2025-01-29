@@ -89,7 +89,7 @@ class BasePage:
             EC.text_to_be_present_in_element((by, value), text)
     )
 
-    def wait_and_click(self, by, value):
+    def wait_element_visible_and_click(self, by, value):
         self.wait_for_element_to_be_visible_and_clickable(by,value)
         element = self.find_element(by, value)
         time.sleep(5)
@@ -97,9 +97,9 @@ class BasePage:
 
     def wait_element_and_click(self, by, value):
         self.wait_for_element(by,value)
-        checkCartA = self.find_element(by,value)
+        element = self.find_element(by,value)
         time.sleep(5)
-        checkCartA.click()
+        element.click()
     
     #CONFIG HOME
     def configHome(self,url, device):

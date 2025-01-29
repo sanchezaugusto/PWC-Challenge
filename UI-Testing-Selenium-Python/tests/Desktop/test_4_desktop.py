@@ -45,13 +45,16 @@ def test_main4(driver):
     home_page.hover_and_add_to_cart_product_B()
     home_page.hover_and_add_to_cart_product_C()
 
-    home_page.wait_for_element_to_be_visible_and_clickable(By.CSS_SELECTOR, CART_CSS)
-    gotoCart = driver.find_element(By.CSS_SELECTOR, CART_CSS)
-    gotoCart.click()
+    # home_page.wait_for_element_to_be_visible_and_clickable(By.CSS_SELECTOR, CART_CSS)
+    # gotoCart = driver.find_element(By.CSS_SELECTOR, CART_CSS)
+    # gotoCart.click()
+    checkout_page.wait_element_and_click_goToCart()
 
-    home_page.wait_for_element(By.XPATH, CHECKOUT_BUTTON_XPATH)
-    checkCartA = driver.find_element(By.XPATH, CHECKOUT_BUTTON_XPATH)
-    checkCartA.click()
+    #crear una funcion para esto en checkout
+    checkout_page.wait_element_and_click_checkCart()
+    # home_page.wait_for_element(By.XPATH, CHECKOUT_BUTTON_XPATH)
+    # checkCartA = driver.find_element(By.XPATH, CHECKOUT_BUTTON_XPATH)
+    # checkCartA.click()
     
     # checkout_obj.acc(*locators.CONFIRM_ADDRESS_NAME)
     # checkout_obj.acc(*locators.CONFIRM_DELIVERY_NAME)

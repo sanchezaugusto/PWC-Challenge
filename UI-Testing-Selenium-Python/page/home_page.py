@@ -90,5 +90,6 @@ class HomePage(BasePage):
 
     # def cond_checkbox(self):
     #     return self.find_element(*HomePageLocators.CONDITIONS_TO_APPROVE_ID)
-    
+    def product_click(self):
+        self.wait_element_and_click(*HomePageLocators.PRODUCT_XPATH)
     

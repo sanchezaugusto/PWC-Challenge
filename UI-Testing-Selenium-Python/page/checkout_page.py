@@ -59,11 +59,18 @@ class CheckoutPage(BasePage):
     def cond_checkbox(self):
         return self.find_element(*CheckoutPageLocators.CONDITIONS_TO_APPROVE_ID_TERMS)
     
-    def wait_and_click_add_to_cart(self):
-        self.wait_and_click(*CheckoutPageLocators.ADD_TO_CART_XPATH)
+    def wait_element_visible_and_click_add_to_cart(self):
+        self.wait_element_visible_and_click(*CheckoutPageLocators.ADD_TO_CART_XPATH)
 
-    def wait_and_click_check_from_modal(self):
-        self.wait_and_click(*CheckoutPageLocators.CHECKOUT_BUTTON_MODAL_XPATH)
+    def wait_element_visible_and_click_check_from_modal(self):
+        self.wait_element_visible_and_click(*CheckoutPageLocators.CHECKOUT_BUTTON_MODAL_XPATH)
 
-    def wait_and_click_check_from_cart(self):
-        self.wait_and_click(*CheckoutPageLocators.CHECKOUT_BUTTON_CART_XPATH)
+    def wait_element_visible_and_click_check_from_cart(self):
+        self.wait_element_visible_and_click(*CheckoutPageLocators.CHECKOUT_BUTTON_CART_XPATH)
+   
+    def wait_element_and_click_goToCart(self):
+        self.wait_element_visible_and_click(*CheckoutPageLocators.CART_CSS)
+
+    def wait_element_and_click_checkCart(self):
+        self.wait_element_and_click(*CheckoutPageLocators.CHECKOUT_BUTTON_CART_XPATH)
+    

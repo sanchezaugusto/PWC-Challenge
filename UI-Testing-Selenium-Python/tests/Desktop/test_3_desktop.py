@@ -25,13 +25,14 @@ def test_main3(driver):
     home_page.configHome(url=APP_URL, device = DEVICE[device])
     
     # Act
+    #home_page.product_click() ver si puedo poner esta funcion nomas 
     home_page.wait_for_element(By.XPATH, PRODUCT_XPATH)
     product1 = driver.find_element(By.XPATH, PRODUCT_XPATH)
     product1.click()
     
-    checkout_page.wait_and_click_add_to_cart()
-    checkout_page.wait_and_click_check_from_modal()
-    checkout_page.wait_and_click_check_from_cart()
+    checkout_page.wait_element_visible_and_click_add_to_cart()
+    checkout_page.wait_element_visible_and_click_check_from_modal()
+    checkout_page.wait_element_visible_and_click_check_from_cart()
     # home_page.wait_for_element_to_be_visible_and_clickable(By.XPATH, ADD_TO_CART_XPATH)
     # addtocartButton = driver.find_element(By.XPATH, ADD_TO_CART_XPATH)
     # time.sleep(5)
