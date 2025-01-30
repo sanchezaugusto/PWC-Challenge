@@ -93,3 +93,49 @@ class HomePage(BasePage):
     def product_click(self):
         self.wait_element_and_click(*HomePageLocators.PRODUCT_XPATH)
     
+    def smooth_scroll(self, start, end, step, delay=0.1):
+        if end is None:
+            end = self.driver.execute_script("return document.body.scrollHeight")
+        
+        for position in range(start, end, step):
+            self.driver.execute_script(f"window.scrollTo(0, {position});")
+            time.sleep(delay)
+
+    def navigate_and_scroll(self, by_element, value_element, scroll_end=None, scroll_delay=0.2):
+        element = WebDriverWait(self.driver, 30).until(
+            EC.presence_of_element_located((by_element, value_element))
+        )
+        hover = ActionChains(self.driver).move_to_element(element)
+        hover.perform()
+        element.click()
+        time.sleep(5)
+        self.smooth_scroll(start=0, step=50, end=scroll_end, delay=scroll_delay)
+
+    def navigate_to_first_element(self):
+         # Navegar al primer elemento
+         # self.navigate_and_scroll(By.XPATH, "//*[@id='category-3']/a")
+        self.navigate_and_scroll(*HomePageLocators.ELEMENT_PAGE_FIRST_XPATH)
+
+    def navigate_to_second_element(self):
+        page_height = self.driver.execute_script("return document.body.scrollHeight")
+        halfway_point = page_height // 2
+        #self.navigate_and_scroll(By.XPATH, "//*[@id='link-cms-page-1-2']", scroll_end=halfway_point)
+        self.navigate_and_scroll(*HomePageLocators.ELEMENT_PAGE_SECOND_XPATH, scroll_end=halfway_point)
+
+    def navigate_to_third_element(self):
+         page_height = self.driver.execute_script("return document.body.scrollHeight")
+         halfway_point = page_height // 2
+         self.go_to_home()
+         time.sleep(10)
+         # Navegar al tercer elemento
+         self.navigate_and_scroll(*HomePageLocators.ELEMENT_PAGE_THIRD_XPATH, scroll_end=halfway_point)
+         #self.navigate_and_scroll(By.XPATH, "//*[@id='category-6']/a", scroll_end=halfway_point)
+
+    def navigate_to_fourth_element(self):
+         page_height = self.driver.execute_script("return document.body.scrollHeight")
+         halfway_point = page_height // 2
+         #self.navigate_and_scroll(By.XPATH, "//*[@id='js-product-list']/div[1]/div[7]/article/div/div[1]/a/picture/img", scroll_end=halfway_point)
+         self.navigate_and_scroll(*HomePageLocators.ELEMENT_PAGE_FOURTH_XPATH, scroll_end=halfway_point)
+         # Volver a la página de inicio
+         self.go_to_home()
+

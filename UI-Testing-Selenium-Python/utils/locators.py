@@ -22,6 +22,12 @@ class HomePageLocators:
     QUICK_VIEW_C=(By.XPATH,"//*[@id='content']/section[1]/div/div[7]/article/div/div[1]/div/a")
 
     CONDITIONS_TO_APPROVE_ID =(By.ID,"conditions_to_approve[terms-and-conditions]")
+
+    ELEMENT_PAGE_FIRST_XPATH = (By.XPATH, "//*[@id='category-3']/a")
+    ELEMENT_PAGE_SECOND_XPATH = (By.XPATH, "//*[@id='link-cms-page-1-2']")
+
+    ELEMENT_PAGE_THIRD_XPATH = (By.XPATH, "//*[@id='category-6']/a")
+    ELEMENT_PAGE_FOURTH_XPATH = (By.XPATH, "//*[@id='js-product-list']/div[1]/div[7]/article/div/div[1]/a/picture/img")
     
 
 class AccountPageLocators:
@@ -59,6 +65,9 @@ class CheckoutPageLocators:
     CHECKOUT_BUTTON_CART_XPATH = (By.XPATH,"//*[@id='main']/div/div[2]/div[1]/div[2]/div/a")
 
     CART_CSS = (By.CSS_SELECTOR,"#_desktop_cart > div > div > a > span.hidden-sm-down")
+
+    INCREASE_XPATH=(By.XPATH, "//*[@id='main']/div/div[1]/div/div[2]/ul/li[2]/div/div[3]/div/div[2]/div/div[1]/div/span[3]/button[1]")
+    DELETE_XPATH=(By.XPATH, "//*[@id='main']/div/div[1]/div/div[2]/ul/li[4]/div/div[3]/div/div[3]/div/a/i")
 
 
 

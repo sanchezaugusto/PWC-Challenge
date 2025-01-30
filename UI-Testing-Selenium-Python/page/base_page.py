@@ -5,8 +5,12 @@ from selenium.webdriver.common.by import By
 from utils import config
 import os
 import time
-
+from dotenv import load_dotenv
+load_dotenv()
+APP_URL = "APP_URL"
 class BasePage:
+   
+
     def __init__(self, driver):
         self.driver = driver
         self.timeout = 10
@@ -91,20 +95,20 @@ class BasePage:
 
     def wait_element_visible_and_click(self, by, value):
         self.wait_for_element_to_be_visible_and_clickable(by,value)
-        element = self.find_element(by, value)
         time.sleep(5)
+        element = self.find_element(by, value)
         element.click()
 
     def wait_element_and_click(self, by, value):
         self.wait_for_element(by,value)
-        element = self.find_element(by,value)
         time.sleep(5)
+        element = self.find_element(by,value)
         element.click()
     
     #CONFIG HOME
-    def configHome(self,url, device):
+    def configHome(self, device):
         
-        self.driver.get(os.getenv(url))
+        self.driver.get(os.getenv(APP_URL))
 
         WebDriverWait(self.driver, 50).until(
         EC.presence_of_element_located((By.XPATH, "//*[@id='framelive']")))

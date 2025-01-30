@@ -6,13 +6,6 @@ from page.base_page import BasePage
 import utils.config as config
 import time
 class CheckoutPage(BasePage):
-    ADDRESS_ID = "field-address1"
-    FIELD_ID = "field-postcode"
-    CITY_ID = "field-city"
-    STATE_ID = "field-id_state"
-    CONFIRM_DELIVERY_NAME = "confirmDeliveryOption"
-    CONFIRM_ADDRESS_NAME = "confirm-addresses"
-    CONDITIONS_TO_APPROVE_ID = "conditions_to_approve[terms-and-conditions]"
 
     def fill_address(self, address, postcode, city, country_value, state_value):
         time.sleep(5)
@@ -33,22 +26,12 @@ class CheckoutPage(BasePage):
         #self.click_element(By.NAME, self.CONFIRM_ADDRESS)
 
     def confirm_address(self):
-        self.click_element(By.NAME, self.CONFIRM_ADDRESS_NAME)
+        # self.click_element(By.NAME, self.CONFIRM_ADDRESS_NAME)
+        self.click_element(*CheckoutPageLocators.CONFIRM_ADDRESS_NAME)
 
-    # def confirm_delivery(self):
-    #     self.click_element(By.NAME, self.CONFIRM_DELIVERY_NAME)
-
-    # def accept_terms(self):
-    #     self.click_element(By.ID, self.CONDITIONS_TO_APPROVE_ID)
 
     def is_terms_accepted(self):
         return self.find_element(*CheckoutPageLocators.CONDITIONS_TO_APPROVE_ID).is_selected()
-    
-    # def acc(self,*locator):
-    #     BasePage_obj=BasePage(self.driver)
-    #     BasePage_obj.wait_for_element_to_be_visible_and_clickable(locator[0] ,locator[1])
-    #     return self.find_element(*locator).click()
-    #     #obj (la instancia) se pasa automáticamente como el primer argumento.
 
     def confirm_delivery(self):
         self.wait_for_element_to_be_visible_and_clickable(*CheckoutPageLocators.CONFIRM_DELIVERY_NAME).click()
@@ -73,4 +56,10 @@ class CheckoutPage(BasePage):
 
     def wait_element_and_click_checkCart(self):
         self.wait_element_and_click(*CheckoutPageLocators.CHECKOUT_BUTTON_CART_XPATH)
+
+    def increase_button(self):
+        self.wait_element_visible_and_click(*CheckoutPageLocators.INCREASE_XPATH)
+
+    def delete_button(self):
+        self.wait_element_visible_and_click(*CheckoutPageLocators.DELETE_XPATH)
     

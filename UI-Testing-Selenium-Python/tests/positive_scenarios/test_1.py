@@ -1,5 +1,4 @@
 from selenium.webdriver.common.by import By
-from selenium.webdriver.support import expected_conditions as EC
 from utils.test_data_loader import load_test_data
 from utils.custom_assertion import assert_resolution
 from dotenv import load_dotenv
@@ -10,7 +9,6 @@ load_dotenv()
 
 REGISTRATION_DATA = load_test_data("test_data.json")["registration"]
 DEVICE = load_test_data("test_data.json")["device"]
-APP_URL = "APP_URL"
 REG_DATA_XPATH = "//*[@id='_desktop_user_info']/div/a[2]/span"
 
 def test_main1(driver):
@@ -18,7 +16,7 @@ def test_main1(driver):
     driver, device = driver
     home_page = HomePage(driver)
     account_page = AccountPage(driver)
-    home_page.configHome(APP_URL, DEVICE[device])
+    home_page.configHome(DEVICE[device])
 
     # Act
     home_page.click_on_sign_in()

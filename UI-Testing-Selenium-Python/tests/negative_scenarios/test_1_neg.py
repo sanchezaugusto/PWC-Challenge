@@ -51,21 +51,4 @@ def test_user_registration(driver):
     userData = driver.find_element(By.XPATH, "//*[@id='customer-form']/div/div[4]/div[1]/div/ul/li")
     assert userData.text == expectedMessage, \
     f"Expected success message not displayed. Actual message: {userData.text}"
-#     WebDriverWait(driver, 50).until(
-#     EC.presence_of_element_located((By.XPATH, "//*[@id='_desktop_user_info']/div/a[2]/span")))
-
-#    # Asserts
-#     expectedText = "Sign In"
-#     logOut = driver.find_element(By.XPATH,"//*[@id='_desktop_user_info']/div/a[1]")
-#     assert expectedText != logOut.text, \
-#     f"Expected success message not displayed. Actual message: {logOut.text}"
-
-#     expectedName = f"{REGISTRATION_DATA['firstname']} {REGISTRATION_DATA['lastname']}"
-#     userData = driver.find_element(By.XPATH, "//*[@id='_desktop_user_info']/div/a[2]/span")
-#     assert userData.text == expectedName, \
-#     f"Expected success message not displayed. Actual message: {userData.text}"
-
-#     expectedResolution = 'desktop'
-#     assert_resolution(driver,expectedResolution)
-
 

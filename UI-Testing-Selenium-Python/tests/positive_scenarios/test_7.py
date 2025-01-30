@@ -8,15 +8,14 @@ load_dotenv()
 
 REGISTRATION_DATA = load_test_data("test_data.json")["registration"]
 DEVICE = load_test_data("test_data.json")["device"]
-APP_URL = "APP_URL"
 MESSAGE_ID = "blockEmailSubscription_displayFooterBefore"
-MESSAGE_CSS = "p.alert.alert-success"
+#MESSAGE_CSS = "p.alert.alert-success"
 
 def test_main7(driver):
     # Arrange
     driver, device = driver
     home_page = HomePage(driver)
-    home_page.configHome(url=APP_URL, device=DEVICE[device])
+    home_page.configHome(DEVICE[device])
 
     # Act
     home_page.sign_up_newsletter(REGISTRATION_DATA["email"])

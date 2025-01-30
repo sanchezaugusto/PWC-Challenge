@@ -1,5 +1,4 @@
 from selenium.webdriver.common.by import By
-from selenium.webdriver.support import expected_conditions as EC
 from utils.test_data_loader import load_test_data
 from utils.custom_assertion import assert_resolution
 from dotenv import load_dotenv
@@ -10,7 +9,6 @@ load_dotenv()
 
 CONTACTFORM_DATA = load_test_data("test_data.json")["contact_form"]
 DEVICE = load_test_data("test_data.json")["device"]
-APP_URL = "APP_URL"
 SUCCESS_MESSAGE_XPATH = "//*[@id='content']/section/form/div/ul/li"
 
 def test_main2(driver):
@@ -18,7 +16,7 @@ def test_main2(driver):
     driver, device = driver
     contact_page = ContactPage(driver)
     home_page = HomePage(driver)
-    home_page.configHome(url=APP_URL, device=DEVICE[device])
+    home_page.configHome(DEVICE[device])
 
     # Act
     home_page.click_on_contact_us()
