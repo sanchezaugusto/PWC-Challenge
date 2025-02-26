@@ -17,4 +17,4 @@ DEVICE = load_test_data("test_data.json")["device"]
 APP_URL = os.getenv("APP_URL")
 
 # Tiempo de espera
-WAIT_TIME = 25
+WAIT_TIME = 30

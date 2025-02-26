@@ -6,21 +6,22 @@ from selenium.webdriver.common.action_chains import ActionChains
 import time
 from .base_page import BasePage
 from utils.locators import HomePageLocators
+from utils import config
 
 class HomePage(BasePage):
     def config_home(self, url, device):
         self.driver.get(os.getenv(url))
 
-        WebDriverWait(self.driver, 50).until(
+        WebDriverWait(self.driver, config.WAIT_TIME).until(
             EC.presence_of_element_located((By.XPATH, "//*[@id='framelive']"))
         )
 
         iframe = self.driver.find_element(By.ID, "framelive")
-        WebDriverWait(self.driver, 10).until(
+        WebDriverWait(self.driver, config.WAIT_TIME).until(
             lambda d: iframe.is_displayed() and iframe.is_enabled()
         )
         myDevice = self.driver.find_element(By.XPATH, device)
-        WebDriverWait(self.driver, 10).until(
+        WebDriverWait(self.driver, config.WAIT_TIME).until(
             lambda d: iframe.is_displayed() and iframe.is_enabled()
         )
 
@@ -61,7 +62,7 @@ class HomePage(BasePage):
         hover= ActionChains(self.driver).move_to_element(product)
         hover.perform()
 
-        WebDriverWait(self.driver, 30).until(
+        WebDriverWait(self.driver, config.WAIT_TIME).until(
         EC.presence_of_element_located((byquick, quick_view)))
 
         quickView = self.driver.find_element(byquick, quick_view)
@@ -69,7 +70,7 @@ class HomePage(BasePage):
         hover.perform()
         quickView.click()
         
-        WebDriverWait(self.driver, 30).until(
+        WebDriverWait(self.driver, config.WAIT_TIME).until(
         EC.presence_of_element_located((By.XPATH, "//*[@id='add-to-cart-or-refresh']/div[2]/div/div[2]/button")))
 
         addtocart2Button = self.driver.find_element(By.XPATH, "//*[@id='add-to-cart-or-refresh']/div[2]/div/div[2]/button")
@@ -87,9 +88,7 @@ class HomePage(BasePage):
 
     def hover_and_add_to_cart_product_C(self):
         self.hover_and_add_to_cart(*HomePageLocators.PRODUCT_C_XPATH, *HomePageLocators.QUICK_VIEW_C)
-
-    # def cond_checkbox(self):
-    #     return self.find_element(*HomePageLocators.CONDITIONS_TO_APPROVE_ID)
+        
     def product_click(self):
         self.wait_element_and_click(*HomePageLocators.PRODUCT_XPATH)
     
@@ -102,7 +101,7 @@ class HomePage(BasePage):
             time.sleep(delay)
 
     def navigate_and_scroll(self, by_element, value_element, scroll_end=None, scroll_delay=0.2):
-        element = WebDriverWait(self.driver, 30).until(
+        element = WebDriverWait(self.driver, config.WAIT_TIME).until(
             EC.presence_of_element_located((by_element, value_element))
         )
         hover = ActionChains(self.driver).move_to_element(element)

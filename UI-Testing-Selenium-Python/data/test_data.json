@@ -4,7 +4,8 @@
     "firstname": "John",
     "lastname": "Smith",
     "email": "6a1b6t9d@anonaddy.me",
-    "password": "cguvhibjonko"
+    "password": "cguvhibjonko",
+    "wrong_email": "wrong@email.com"
   },
   "contact_form": {
     "attachment_path": "C:\\Users\\",

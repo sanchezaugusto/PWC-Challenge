@@ -40,7 +40,7 @@ class BasePage:
         # Intentar localizar el botón Home con los distintos selectores
         for selector_type, selector_value in home_button_selectors:
             try:
-                home_button = WebDriverWait(self.driver, 15).until(
+                home_button = WebDriverWait(self.driver, config.WAIT_TIME).until(
                     EC.element_to_be_clickable((selector_type, selector_value))
                 )
                 home_button.click()
@@ -110,15 +110,15 @@ class BasePage:
         
         self.driver.get(os.getenv(APP_URL))
 
-        WebDriverWait(self.driver, 50).until(
+        WebDriverWait(self.driver, config.WAIT_TIME).until(
         EC.presence_of_element_located((By.XPATH, "//*[@id='framelive']")))
 
         iframe = self.driver.find_element(By.ID, "framelive")
-        WebDriverWait(self.driver, 10).until(
+        WebDriverWait(self.driver, config.WAIT_TIME).until(
                  lambda d: iframe.is_displayed() and iframe.is_enabled()
             )
         myDevice = self.driver.find_element(By.XPATH, device)
-        WebDriverWait(self.driver, 10).until(
+        WebDriverWait(self.driver, config.WAIT_TIME).until(
                 lambda d: iframe.is_displayed() and iframe.is_enabled()
             )
             

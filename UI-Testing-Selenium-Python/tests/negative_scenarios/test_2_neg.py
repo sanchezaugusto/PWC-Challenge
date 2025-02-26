@@ -7,23 +7,22 @@ from selenium.webdriver.support import expected_conditions as EC
 from dotenv import load_dotenv
 from utils.test_data_loader import load_test_data
 from page.home_page import HomePage 
+from page.contact_page import ContactPage
 from utils.custom_assertion import assert_resolution
 
 CONTACTFORM_DATA = load_test_data("test_data.json")["contact_form"]
 DEVICE = load_test_data("test_data.json")["device"]
-APP_URL = "APP_URL"
 load_dotenv()
 
 def test_main2(driver):
-    # Arrange: Navegar a la página de registro
+    # Arrange
     driver, device = driver
+    contact_page = ContactPage(driver)
     home_page = HomePage(driver)
-    home_page.configHome(url=APP_URL, device=DEVICE[device])
+    home_page.configHome(DEVICE[device])
 
-    WebDriverWait(driver, 30).until(
-    EC.presence_of_element_located((By.ID, "contact-link")))
-    loginButton = driver.find_element(By.ID, "contact-link")
-    loginButton.click()
+    # Act
+    home_page.click_on_contact_us()
     time.sleep(2)
     WebDriverWait(driver, 30).until(
     EC.presence_of_element_located((By.XPATH, "//*[@id='file-upload']")))
